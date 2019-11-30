@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body_content %}
+        <div class="form">
+                <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group">
+                                {{ form.book.label }}
+                                {% if form.book.errors %}
+                                        {{ form.book }}
+                                        <div class="error">
+                                                {% for error in form.book.errors %}
+                                                        <span>{{ error }}</span>
+                                                {% endfor %}
+                                        </div>
+                                {% else %}
+                                                {{ form.book }}
+                                {% endif %}
+                        </div>
+                        <br>
+                        <!-- other fields...-->
+                        <div class="form-group">
+                                {{ form.submit }}
+                        </div>
+                </form>
+        </div>
+
+        <div class="form">
+                <form method="POST" action="">
+                        {{ form.hidden_tag( )}}
+                        {{ form.book.label }}
+                        {{ form.book }}
+                        <br>
+                        {{ form.author.label }}
+                        {{ form.author }}
+                        <br>
+                        {{ form.description.label }}
+                        {{ form.description }}
+                        <br>
+			{{ form.rating.label }}
+			{{ form.rating }}
+			<br>
+                        {{ form.submit }}
+                </form>
+        </div>
+{% endblock body_content %}
