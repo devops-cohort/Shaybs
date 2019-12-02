@@ -46,7 +46,7 @@ def reviews():
 @app.route('/logout')
 def logout():
         logout_user()
-        return(redirect(url_for('Login'))
+        return redirect(url_for('login'))
 
 @app.route('/login')
 def login():
