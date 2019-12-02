@@ -28,7 +28,7 @@ class Book_Posts(db.Model):
 
 class Users(db.Model):
         id = db.Column(db.Integer, primary_key=True)
-        email = db.Columnn(db.String(250), nullable=False, unique=True)
+        email = db.Column(db.String(250), nullable=False, unique=True)
         password = db.Column(db.String(500), nullable=False)
 
         def __repr__(self):
