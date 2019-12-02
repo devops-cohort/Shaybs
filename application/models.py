@@ -32,5 +32,5 @@ class Users(db.Model):
         password = db.Column(db.String(500), nullable=False)
 
         def __repr__(self):
-                return ''.join(['User ID', str(self.id), '\r\n', 'Email: ', self.email])
+                return ''.join(['User ID: ', str(self.id), '\r\n', 'Email: ', self.email])
                 
