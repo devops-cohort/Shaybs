@@ -7,7 +7,7 @@
 			{{ form.hidden_tag() }}
 			<div class="form-group">
 				{{ form.email.label }}
-				{% if form.email.errors $}
+				{% if form.email.errors %}
 					{{% form.email %}}
 					<div=class="error">
 						{% for error in form.email.errors %}
