@@ -46,6 +46,7 @@ def reviews():
 def login():
         if current_user.is_authenticated:
                 return redirect(url_for('books')
+        
         form = LoginForm()
         if form.validate_on_submit():
                 user=Users.query.filter_bey(email=form.email.data).first()
