@@ -69,7 +69,7 @@ class RegistrationForm(FlaskForm):
                 validators=[
                         DataRequired(),
                         Email()
-                }
+                )
         )
 
         password = PasswordField('Password',
@@ -92,9 +92,6 @@ class RegistrationForm(FlaskForm):
 
                 if user:
                         raise ValidationError('Email is already in use!')
-        
-
-
 
 
 
