@@ -49,7 +49,7 @@ def login():
 def register():
         form = RegistrationForm()
         if form.validate_on_submit():
-                hashed_pw = bcrypt.generate_password_has(form.password.data.decode('ytf-8'))
+                hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
                 user = Users(email=form.email.data, password=hashed_pw)
                 db.session.add(user)
                 db.session.commit
