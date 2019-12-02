@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for
-from application import app, db
-from application.models import Posts, Book_Posts
-from application.forms import PostForm, Book_PostForm
+from application import app, db, bcrypt
+from application.models import Posts, Book_Posts, Users
+from application.forms import PostForm, Book_PostForm, Registration Form
 
 @app.route('/')
 @app.route('/home')
@@ -45,9 +45,16 @@ def reviews():
 def login():
 	return render_template('login.html', title='Login')
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-	return render_template('register.html', title='Register')
+        form = RegistrationForm()
+        if form.validate_on_submit():
+                hashed_pw = bcrypt.generate_password_has(form.password.data.decode('ytf-8'))
+                user = Users(email=form.email.data, password=hashed_pw)
+                db.session.add(user)
+                db.session.commit
+                return redirect(url_for('posts'))
+        return render_template('register.html', title='Register')
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():
