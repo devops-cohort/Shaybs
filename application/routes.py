@@ -42,15 +42,10 @@ def books():
 def reviews():
 	return render_template('reviews.html', title='Reviews')
 
-@app.route('/logout')
-def logout():
-        logout_user()
-        return redirect(url_for('login'))
-
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('books'))
+        return redirect(url_for('home'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -61,7 +56,7 @@ def login():
                     next_page = request.args.get('next')
 
                     if next_page:
-                            return redirect(url_for('books'))
+                            return redirect(next_page)
                     else:
                             return redirect(url_for('home'))
                     
@@ -70,6 +65,11 @@ def login():
 @login_manager.user_loader
 def load_user(id):
         return Users.query.get(int(id))
+
+@app.route('/logout')
+def logout():
+        logout_user()
+        return redirect(url_for('login'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
