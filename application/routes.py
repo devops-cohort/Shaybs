@@ -48,7 +48,7 @@ def logout():
         logout_user()
         return redirect(url_for('login'))
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('books') )
