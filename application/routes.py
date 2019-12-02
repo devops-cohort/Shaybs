@@ -1,8 +1,9 @@
 from flask import render_template, redirect, url_for, request
-from application import app, db, bcrypt
+from application import app, db, bcrypt, login_manager
 from application.models import Posts, Book_Posts, Users
 from application.forms import PostForm, Book_PostForm, RegistrationForm, LoginForm
 from flask_login import login_user, current_user, logout_user, login_required
+
 
 @app.route('/')
 @app.route('/home')
@@ -42,6 +43,11 @@ def books():
 def reviews():
 	return render_template('reviews.html', title='Reviews')
 
+@app.route('/logout')
+def logout:
+        logout_user()
+        return(redirect(url_for('Login'))
+
 @app.route('/login')
 def login():
     if current_user.is_authenticated:
@@ -61,6 +67,10 @@ def login():
                             return redirect(url_for('/home'))
                     
     return render_template('login.html', title='Login', form=form)
+
+@login_manager.user_loader
+def load_user(id):
+        return Users.query.get(int(id))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
