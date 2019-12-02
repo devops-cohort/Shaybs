@@ -4,7 +4,6 @@ from application.models import Posts, Book_Posts, Users
 from application.forms import PostForm, Book_PostForm, RegistrationForm, LoginForm
 from flask_login import login_user, current_user, logout_user, login_required
 
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -51,7 +50,7 @@ def logout():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('books') )
+        return redirect(url_for('books'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -62,7 +61,7 @@ def login():
                     next_page = request.args.get('next')
 
                     if next_page:
-                            return redirect(next_page)
+                            return redirect(url_for('books'))
                     else:
                             return redirect(url_for('home'))
                     
