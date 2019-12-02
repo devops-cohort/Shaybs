@@ -4,7 +4,7 @@
 	<p>Need an account? Sign up!</p>
 	<div class="form">
 		<form method="POST" action="">
-			{{ form.email.label }}
+			{{ form.hidden_tag() }}
 			<div class="form-group">
 				{{ form.email.label }}
 				{% if form.email.errors $}
