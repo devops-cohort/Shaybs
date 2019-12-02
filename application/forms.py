@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
-from application import Users
+from application.models import Users
 
 class PostForm(FlaskForm):
 	first_name = StringField('First Name',
