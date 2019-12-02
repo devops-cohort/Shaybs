@@ -53,7 +53,7 @@ def register():
                 user = Users(email=form.email.data, password=hashed_pw)
                 db.session.add(user)
                 db.session.commit
-                return redirect(url_for('posts'))
+                return redirect(url_for('books'))
         return render_template('register.html', title='Register', form=form)
 
 @app.route('/post', methods=['GET', 'POST'])
