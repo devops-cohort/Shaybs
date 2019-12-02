@@ -1,7 +1,8 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, request
 from application import app, db, bcrypt
 from application.models import Posts, Book_Posts, Users
-from application.forms import PostForm, Book_PostForm, RegistrationForm
+from application.forms import PostForm, Book_PostForm, RegistrationForm, LoginForm
+from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
 @app.route('/home')
@@ -43,7 +44,22 @@ def reviews():
 
 @app.route('/login')
 def login():
-	return render_template('login.html', title='Login')
+        if current_user.is_authenticated:
+                return redirect(url_for('books')
+        form = LoginForm()
+        if form.validate_on_submit():
+                user=Users.query.filter_bey(email=form.email.data).first()
+
+                if user and bcryp.check_password_hash(user.password, form.password.data):
+                        login_user(user, remember=form.remember.data)
+                        next_page = request.args.get('next')
+
+                        if next_page:
+                                return redirect(next_page)
+                        else:
+                                return redirect(url_for('/home'))
+                        
+	return render_template('login.html', title='Login', form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -57,6 +73,7 @@ def register():
         return render_template('register.html', title='Register', form=form)
 
 @app.route('/post', methods=['GET', 'POST'])
+@login_required
 def post():
 	form = PostForm()
 	if form.validate_on_submit():
