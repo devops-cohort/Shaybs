@@ -54,7 +54,7 @@ def register():
                 db.session.add(user)
                 db.session.commit
                 return redirect(url_for('posts'))
-        return render_template('register.html', title='Register')
+        return render_template('register.html', title='Register', form=form)
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():
