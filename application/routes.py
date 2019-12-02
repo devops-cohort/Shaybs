@@ -44,7 +44,7 @@ def reviews():
 	return render_template('reviews.html', title='Reviews')
 
 @app.route('/logout')
-def logout:
+def logout():
         logout_user()
         return(redirect(url_for('Login'))
 
