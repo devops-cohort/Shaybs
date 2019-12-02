@@ -75,7 +75,6 @@ class RegistrationForm(FlaskForm):
         password = PasswordField('Password',
                 validators=[
                         DataRequired(),
-                        Email()
                 ]
         )
 
