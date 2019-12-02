@@ -78,7 +78,7 @@ def register():
                 hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
                 user = Users(email=form.email.data, password=hashed_pw)
                 db.session.add(user)
-                db.session.commit
+                db.session.commit()
                 return redirect(url_for('books'))
         return render_template('register.html', title='Register', form=form)
 
