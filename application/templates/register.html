@@ -1,6 +1,29 @@
 {% extends "layout.html" %}
 {% block body_content %}
 	<h1> Register </h1>
-	<p> Here you can register to become a user </p>
+	<p>Need an account? Sign up!</p>
+	<div class="form">
+		<form method="POST" action="">
+			{{ form.email.label }}
+			<div class="form-group">
+				{{ form.email.label }}
+				{% if form.email.errors $}
+					{{% form.email %}}
+					<div=class="error">
+						{% for error in form.email.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+                                        </div>
+                                {% else %}
+                                    {{ form.email }}
+                                {% endif %}
+                        </div>
+                        <br>
+                        <!----other fields---->
+                        <div class="form-group">
+                            {{ form.submit }}
+                        </div>
+                </form>
+        </div>					
 {% endblock body_content %}
 
