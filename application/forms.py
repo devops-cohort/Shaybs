@@ -68,19 +68,19 @@ class Book_PostForm(FlaskForm):
 	submit = SubmitField('Post Content')
 
 class RegistrationForm(FlaskForm):
-	first_name = StringField('First Name',
-		validators=[
-			DataRequired(),
-			Length(min=2, max=30)
-		]
-	)
+        first_name = StringField('First Name',
+                validators=[
+                        Datarequired(),
+                        Length(min=2,max=30)
+                ]
+        )
+        last_name = StringField('Last Name',
+                validators=[
+                        DataRequired(),
+                        Length(min=1,max=30)
+                ]
+        )
 
-	last_name = StringField('Last Name',
-		validators=[
-			DataRequired(),
-			Length(min=2, max=30)
-		]
-	)
         email = StringField('Email',
                 validators=[
                         DataRequired(),
@@ -107,8 +107,5 @@ class RegistrationForm(FlaskForm):
 
                 if user:
                         raise ValidationError('Email is already in use!')
-
-
-
 
                 
