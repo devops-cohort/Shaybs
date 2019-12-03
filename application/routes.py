@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, flash
 from application import app, db, bcrypt, login_manager
 from application.models import Posts, Book_Posts, Users
 from application.forms import PostForm, Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm
@@ -59,6 +59,7 @@ def login():
                     if next_page:
                             return redirect(next_page)
                     else:
+                            flash('Invalid email or password')
                             return redirect(url_for('home'))
                     
     return render_template('login.html', title='Login', form=form)
@@ -68,6 +69,7 @@ def load_user(id):
         return Users.query.get(int(id))
 
 @app.route('/logout')
+@login_required
 def logout():
         logout_user()
         return redirect(url_for('login'))
@@ -90,7 +92,8 @@ def register():
                 
                 db.session.add(user)
                 db.session.commit()
-                return redirect(url_for('books'))
+                flash('You have successfully registered! You can now login')
+                return redirect(url_for('login'))
         return render_template('register.html', title='Register', form=form)
 
 @app.route('/post', methods=['GET', 'POST'])
