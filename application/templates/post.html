@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body_content %}
+        <div class="form">
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			<div class="form-group">
+				{{ form.title.label }}
+				{% if form.title.errors %}
+					{{ form.title }}
+					<div class="error">
+						{% for error in form.title.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+						{{ form.title }}
+				{% endif %}
+			</div>
+			<br>
+			<div class="form-group">
+				{{ form.content.label }}
+				{% if form.content.errors %}
+					{{ form.content }}
+					<div class="error">
+						{% for error in form.content.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+						{{ form.content }}
+				{% endif %}
+			</div>
+			<br>
+			<!-- other fields...-->
+			<div class="form-group">
+				{{ form.submit }}
+			</div>
+		</form>
+	</div>
+{% endblock body_content %}
