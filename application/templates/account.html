@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body_content %}
-        <h1> Account </h1>
-        <p> Update your account details </p>
+	<h1>{{ current_user.first_name }} {{ current_user.last_name }} Account </h1>
+	<p> Update your account details </p>
 	<div class="form">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
@@ -47,6 +47,9 @@
                                 {% endif %}
                         </div>
                         <br>
+                        <div class="form-group">
+                            {{ form.submit }}
+                        </div>
                 </form>
         </div>	
 {% endblock body_content %}
