@@ -35,6 +35,8 @@ def books():
 
         else:
                 print(form.errors)
+
+        postData = Book_Posts.query.all()
         return render_template('books.html', title='Books', form=form)
 
 @app.route('/reviews')
