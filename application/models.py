@@ -35,24 +35,9 @@ class Users(db.Model, UserMixin):
         email = db.Column(db.String(250), nullable=False, unique=True)
         password = db.Column(db.String(500), nullable=False)
         posts = db.relationship('Posts', backref='author', lazy=True)
-        reviews = db.relationship('Reviews', backref='reviewer', lazy=True)
         
         def __repr__(self):
                 return ''.join(['User ID: ', str(self.id), '\r\n',
                                 'Email: ', self.email, '\r\n',
                                'Name: ', self.first_name, ' ', self.last_name])
 
-##class Reviews(db.Model):
-##        id = db.Column(db.Integer, primary_key=True)
-##        user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-##        
-##
-##        
-##Review
-##ReviewID
-##BookID
-##Book
-##Review
-##Rating
-##Edit
-##Delete

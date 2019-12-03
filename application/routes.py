@@ -8,7 +8,6 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route('/home')
 def home():
 	postData = Posts.query.all()
-	postData1 = Book_Posts.query.all()
 	return render_template('home.html', title='Home', posts=postData)
 
 @app.route('/about')

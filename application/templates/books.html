@@ -17,6 +17,45 @@
                                 {% endif %}
                         </div>
                         <br>
+			<div class="form-group">
+				{{ form.author.label }}
+				{% if form.author.errors %}
+					{{ form.author }}
+					<div class="error">
+						{% for error in form.author.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+				{% else %}
+						{{ form.author }}
+				{% endif %}
+			</div>
+			<br>
+			<div class="form-group">
+				{{ form.description.label }}
+				{% if form.description.errors %}
+					{{ form.description }}
+					<div class="error">
+						{% for error in form.description.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+				{% else %}
+						{{ form.description }}
+				{% endif %}
+			</div>
+			<br>
+			<div class="form-group">
+				{{ form.rating.label }}
+				{% if form.rating.errors %}
+					{{ form.rating }}
+					<div class="error">
+						{% for error in form.rating.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+				{% else %}
+						{{ form.rating }}
+				{% endif %}
+			</div>
+			<br>
                         <!-- other fields...-->
                         <div class="form-group">
                                 {{ form.submit }}
@@ -24,22 +63,4 @@
                 </form>
         </div>
 
-        <div class="form">
-                <form method="POST" action="">
-                        {{ form.hidden_tag( )}}
-                        {{ form.book.label }}
-                        {{ form.book }}
-                        <br>
-                        {{ form.author.label }}
-                        {{ form.author }}
-                        <br>
-                        {{ form.description.label }}
-                        {{ form.description }}
-                        <br>
-			{{ form.rating.label }}
-			{{ form.rating }}
-			<br>
-                        {{ form.submit }}
-                </form>
-        </div>
 {% endblock body_content %}
