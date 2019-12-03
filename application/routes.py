@@ -100,7 +100,7 @@ def post():
 
 		postData = Posts(
 		title=form.title.data,
-		content=form.content.data
+		content=form.content.data,
                 author=current_user
                 )
 
