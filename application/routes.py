@@ -73,10 +73,20 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+        if current_user.is_authenticated:
+                return redirect(url_for('home'))
+        
         form = RegistrationForm()
         if form.validate_on_submit():
                 hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-                user = Users(email=form.email.data, password=hashed_pw)
+
+                user = Users(
+                        first_name=form.first_name.data,
+                        last_name=form.last_name.data,
+                        email=form.email.data,
+                        password=hashed_pw
+                )
+                
                 db.session.add(user)
                 db.session.commit()
                 return redirect(url_for('books'))
@@ -87,12 +97,12 @@ def register():
 def post():
 	form = PostForm()
 	if form.validate_on_submit():
+
 		postData = Posts(
-		first_name=form.first_name.data,
-		last_name=form.last_name.data,
 		title=form.title.data,
 		content=form.content.data
-	)
+                author=current_user
+                )
 
 		db.session.add(postData)
 		db.session.commit()
