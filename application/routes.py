@@ -115,7 +115,7 @@ def post():
 @login_required
 def account():
         form = UpdateAccountForm()
-        return render_template('account.html', title='Account')
+        return render_template('account.html', title='Account', form=form)
 
 dummyData = [
 	{
