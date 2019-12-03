@@ -1,6 +1,18 @@
 {% extends "layout.html" %}
 {% block body_content %}
 	<h1>Books Page</h1>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col md-12">
+				
+				<h2>Books List <button type="button" class="btn btn-success pull right" data-toggle = "modal" data target = "#mymodal" >Add Book Data</button> </h2>
+
+			</div>
+			
+		</div>
+	</div>
+
 	{% for book in books %}
 		<div>
 			<h3>{{ book.book }} {{ book.rating }}</h3>
@@ -25,47 +37,47 @@
                                 {% endif %}
                         </div>
                         <br>
-			<div class="form-group">
-				{{ form.author.label }}
-				{% if form.author.errors %}
-					{{ form.author }}
-					<div class="error">
-						{% for error in form.author.errors %}
-							<span>{{ error }}</span>
-						{% endfor %}
-				{% else %}
-						{{ form.author }}
-				{% endif %}
-			</div>
-			<br>
-			<div class="form-group">
-				{{ form.description.label }}
-				{% if form.description.errors %}
-					{{ form.description }}
-					<div class="error">
-						{% for error in form.description.errors %}
-							<span>{{ error }}</span>
-						{% endfor %}
-				{% else %}
-						{{ form.description }}
-				{% endif %}
-			</div>
-			<br>
-			<div class="form-group">
-				{{ form.rating.label }}
-				{% if form.rating.errors %}
-					{{ form.rating }}
-					<div class="error">
-						{% for error in form.rating.errors %}
-							<span>{{ error }}</span>
-						{% endfor %}
-				{% else %}
-						{{ form.rating }}
-				{% endif %}
-			</div>
-			<br>
+						<div class="form-group">
+							{{ form.author.label }}
+							{% if form.author.errors %}
+								{{ form.author }}
+								<div class="error">
+									{% for error in form.author.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+							{% else %}
+									{{ form.author }}
+							{% endif %}
+						</div>
+						<br>
+						<div class="form-group">
+							{{ form.description.label }}
+							{% if form.description.errors %}
+								{{ form.description }}
+								<div class="error">
+									{% for error in form.description.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+							{% else %}
+									{{ form.description }}
+							{% endif %}
+						</div>
+						<br>
+						<div class="form-group">
+							{{ form.rating.label }}
+							{% if form.rating.errors %}
+								{{ form.rating }}
+								<div class="error">
+									{% for error in form.rating.errors %}
+										<span>{{ error }}</span>
+									{% endfor %}
+							{% else %}
+									{{ form.rating }}
+							{% endif %}
+						</div>
+						<br>
                         <!-- other fields...-->
-                        <div class="form-group">
+                       	<div class="form-group">
                                 {{ form.submit }}
                         </div>
                 </form>
