@@ -37,7 +37,7 @@ class PostForm(FlaskForm):
 	)
 
 	submit = SubmitField('Post Content')
-
+	
 class Book_PostForm(FlaskForm):
 	book = StringField('Book',
 		validators=[
