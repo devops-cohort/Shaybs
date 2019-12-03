@@ -11,7 +11,7 @@ class Posts(db.Model):
 
 	def __repr__(self):
 		return ''.join([
-			'User ID: ', self.user_id, '\r\n',
+			'User ID: ', self.user.id, '\r\n',
 			'Title: ', self.title, '\r\n', self.content
 			])
 
