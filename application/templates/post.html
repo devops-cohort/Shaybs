@@ -4,16 +4,30 @@
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
 			<div class="form-group">
-				{{ form.first_name.label }}
-				{% if form.first_name.errors %}
-					{{ form.first_name }}
+				{{ form.title.label }}
+				{% if form.title.errors %}
+					{{ form.title }}
 					<div class="error">
-						{% for error in form.first_name.errors %}
+						{% for error in form.title.errors %}
 							<span>{{ error }}</span>
 						{% endfor %}
 					</div>
 				{% else %}
-						{{ form.first_name }}
+						{{ form.title }}
+				{% endif %}
+			</div>
+			<br>
+			<div class="form-group">
+				{{ form.content.label }}
+				{% if form.content.errors %}
+					{{ form.content }}
+					<div class="error">
+						{% for error in form.content.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+						{{ form.content }}
 				{% endif %}
 			</div>
 			<br>
@@ -21,25 +35,6 @@
 			<div class="form-group">
 				{{ form.submit }}
 			</div>
-		</form>
-	</div>
-
-	<div class="form">
-		<form method="POST" action="">
-			{{ form.hidden_tag( )}}
-			{{ form.first_name.label }}
-			{{ form.first_name }}
-			<br>
-			{{ form.last_name.label }}
-			{{ form.last_name }}
-			<br>
-			{{ form.title.label }}
-			{{ form.title }}
-			<br>
-			{{ form.content.label }}
-			{{ form.content }}
-			<br>
-			{{ form.submit }}
 		</form>
 	</div>
 {% endblock body_content %}
