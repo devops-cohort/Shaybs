@@ -23,6 +23,8 @@
 
 	<head>
 		<title>{{ title }} - Page</title>
+
+		<link href="{{url_for('static', filename='css/bootstrap.min.css'}}" rel="stylesheet">
 	</head>
 	<body>
 		{% block body_content %}{% endblock %}
