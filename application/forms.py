@@ -70,7 +70,7 @@ class Book_PostForm(FlaskForm):
 class RegistrationForm(FlaskForm):
         first_name = StringField('First Name',
                 validators=[
-                        Datarequired(),
+                        DataRequired(),
                         Length(min=2,max=30)
                 ]
         )
