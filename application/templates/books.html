@@ -1,5 +1,13 @@
 {% extends "layout.html" %}
 {% block body_content %}
+	<h1>Books Page</h1>
+		{% for book in books %}
+		<div>
+			<h3>{{ book.book }} {{ book.rating }}</h3>
+			<p> -- {{ book.description }}</p>
+		</div>
+		{% endfor %}
+
         <div class="form">
                 <form method="POST" action="">
                         {{ form.hidden_tag() }}
