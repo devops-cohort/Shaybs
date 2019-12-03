@@ -1,7 +1,7 @@
 from flask import render_template, redirect, url_for, request
 from application import app, db, bcrypt, login_manager
 from application.models import Posts, Book_Posts, Users
-from application.forms import PostForm, Book_PostForm, RegistrationForm, LoginForm
+from application.forms import PostForm, Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
@@ -110,6 +110,12 @@ def post():
 	else:
 		print(form.errors)
 	return render_template('post.html', title='Post', form=form)
+
+@app.route('/account', methods=['GET', 'POST'])
+@login_required
+def account():
+        form = UpdateAccountForm()
+        return render_template('account.html', title='Account', form=form)
 
 dummyData = [
 	{
