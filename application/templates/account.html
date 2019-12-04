@@ -1,7 +1,9 @@
+{% import "bootstrap/wtf.html" as wtf %}
 {% extends "layout.html" %}
+{% block title %} {{ current_user.first_name }} {{ current_user.last_name }} Account {% endblock %}
 {% block body_content %}
-	<h1>{{ current_user.first_name }} {{ current_user.last_name }} Account </h1>
-	<p> Update your account details </p>
+<div class="content-section">
+  <div class="center">
 	<div class="form">
 		<form method="POST" action="">
 			{{ form.hidden_tag() }}
@@ -52,4 +54,6 @@
                         </div>
                 </form>
         </div>	
+</div>
+</div>
 {% endblock body_content %}
