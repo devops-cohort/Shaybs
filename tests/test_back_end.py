@@ -6,14 +6,14 @@ from os import getenv
 from application import app, db
 from application.models import Users, Book_Posts
 
-class TestBase(self):
+class TestBase(TestCase):
 
 	def create_app(self):
 
 		#Passes in test configurations
 		config_name = 'testing'
 		app.config.update(
-			SQLALCHEMY_DATABASE_URI='mysql+pymysql://'+str(getenv('USERNAME'))+':'+str(getenv('PASSWORD'))+'@'+str(getenv('MYSQL_URL'))+'/'+str(getenv('MYSQL_DB_TEST'))
+			SQLALCHEMY_DATABASE_URI='mysql+pymysql://'+str(getenv('USERNAME'))+':'+str(getenv('PASSWORD'))+'@35.197.196.36/bookapp_backup'
 		)
 		return app
 
