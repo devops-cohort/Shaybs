@@ -29,6 +29,7 @@
 								<li><a href="{{ url_for('account') }}">Account</a></li>
 	                        	<li><a href="{{ url_for('about') }}">About</a></li>
 								<li><a href="{{ url_for('logout') }}">Logout</a></li>
+								<li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
 			              </ul>
 						  {% else %}
 						  <ul class="nav navbar-nav navbar-right">
