@@ -30,13 +30,13 @@ class TestBase(self):
 		#BenjaminFranklin = Book_Posts(book="An American Life: Benjamin Franklin", author="Walter Isaacson", description="It is a biography of Benjamin Franklin", rating="5")
 
 		#Save users to the databse
-        db.session.add(admin)
-        db.session.add(employee)
-        db.session.commit()
+		db.session.add(admin)
+		db.session.add(employee)
+		db.session.commit()
 
-        #Save book to database
-        #db.session.add(BenjaminFranklin)
-        #db.session.commit()
+		#Save book to database
+		#db.session.add(BenjaminFranklin)
+		#db.session.commit()
 
 	def tearDown(self):
 		#Called after every test
