@@ -34,12 +34,12 @@
 					                  	<td> {{ book.description }} </td>
 					                  	<td> {{ book.rating }} </td>
 					                  	<td>
-					                    	<a href="{{ url_for('edit_books', id=book.id) }}">
+					                    	<a href="{{ url_for('edit_books') }}">
 					                      		<i class="fa fa-pencil"></i> Edit 
 					                    	</a>
 					                  	</td>
 					                  	<td>
-					                    	<a href="{{ url_for('delete_books', id=book.id) }}">
+					                    	<a href="{{ url_for('delete_books') }}">
 					                      		<i class="fa fa-trash"></i> Delete 
 					                    </a>
 					                  </td>
