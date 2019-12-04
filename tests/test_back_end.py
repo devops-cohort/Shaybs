@@ -47,4 +47,4 @@ class TestViews(TestBase):
 	
 	def  test_login_view(self):
 		response = self.client.get(url_for('login'))
-		self.asserEqual(response.status_code, 200)
+		self.assertEqual(response.status_code, 200)
