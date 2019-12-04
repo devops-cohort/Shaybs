@@ -1,4 +1,6 @@
+{% import "bootstrap/wtf.html" as wtf %}
 {% extends "layout.html" %}
+{% block title %}Register{% endblock %}
 {% block body_content %}
 	<h1> Register </h1>
 	<p>Need an account? Sign up!</p>
@@ -80,6 +82,14 @@
                             {{ form.submit }}
                         </div>
                 </form>
-        </div>					
+        </div>	
+
+<div class="content-section">
+  <div class="center">
+    <h1>Register for an account</h1>
+    <br/>
+    {{ wtf.quick_form(form) }}
+  </div>
+</div>				
 {% endblock body_content %}
 
