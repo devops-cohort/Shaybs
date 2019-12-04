@@ -1,46 +1,12 @@
+{% import "bootstrap/wtf.html" as wtf %}
 {% extends "layout.html" %}
+{% block title %}Login{% endblock %}
 {% block body_content %}
-	<h1> Login Page </h1>
-	<p> Please enter your username and password </p>
-	<div class="form">
-		<form method="POST" action="">
-			{{ form.hidden_tag() }}
-			<div class="form-group">
-				{{ form.email.label }}
-				{% if form.email.errors %}
-					{{ form.email }}
-					<div=class="error">
-						{% for error in form.email.errors %}
-							<span>{{ error }}</span>
-						{% endfor %}
-                                        </div>
-                                {% else %}
-                                    {{ form.email }}
-                                {% endif %}
-                        </div>
-                        <br>
-                        <div class="form-group">
-				{{ form.password.label }}
-				{% if form.password.errors %}
-					{{ form.password }}
-					<div=class="error">
-						{% for error in form.password.errors %}
-							<span>{{ error }}</span>
-						{% endfor %}
-                                        </div>
-                                {% else %}
-                                    {{ form.password }}
-                                {% endif %}
-                        </div>
-			<div class="form-group">
-				{{ form.remember.label }}
-				{{ form.remember }}
-                        </div>
-                       <br>
-                        <!----other fields---->
-                        <div class="form-group">
-                            {{ form.submit }}
-                        </div>
-                </form>
-        </div>	
+<div class="content-section">
+  <div class="center">
+    <h1>Register for an account</h1>
+    <br/>
+    {{ wtf.quick_form(form) }}
+  </div>
+</div>
 {% endblock body_content %}
