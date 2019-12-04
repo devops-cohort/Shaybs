@@ -52,6 +52,19 @@ def add_books():
 
         return render_template('books.html', action="Add", title='Add Book', form=form, add_books=add_books)
 
+@app.route('/books/edit', methods=['GET', 'POST'])
+@login_required
+def edit_books():
+
+        return render_template('books.html')
+
+@app.route('/books/delete', methods=['GET', 'POST'])
+@login_required
+def delete_books():
+
+        return render_template('books.html')
+
+
 @app.route('/reviews')
 def reviews():
 	return render_template('reviews.html', title='Reviews')
