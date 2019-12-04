@@ -19,7 +19,19 @@ def about():
 #	return render_template('books.html', title='Books')
 
 @app.route('/books', methods=['GET', 'POST'])
+@login_required
 def books():
+        #List all books
+
+        books = Book_Posts.query.all()
+
+        return render_template('books.html', title='Books', books=books)
+
+
+@app.route('/books/add', methods=['GET', 'POST'])
+@login_required
+def add_books():
+
         form = Book_PostForm()
         if form.validate_on_submit():
                 postData = Book_Posts(
@@ -28,16 +40,17 @@ def books():
                 description=form.description.data,
                 rating=form.rating.data
         )
-
+        try:
                 db.session.add(postData)
                 db.session.commit()
                 return redirect(url_for('books'))
+                flash('You have successfully added a new book')
+        except:
+                flash('Error: The book already exists')
 
-        else:
-                print(form.errors)
+        return redirect(url_for('list_books'))
 
-        bookData = Book_Posts.query.all()
-        return render_template('books.html', title='Books', form=form, books=bookData)
+        return render_template('books.html', action="Add", title='Add Book', form=form, add_books=add_books)
 
 @app.route('/reviews')
 def reviews():
