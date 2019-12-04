@@ -43,7 +43,7 @@ class TestBase(TestCase):
 		db.session.remove()
 		db.drop_all()
 
-class TestViews(TestBase)
+class TestViews(TestBase):
 	
 	def  test_login_view(self):
 		response = self.client.get(url_for('login'))
