@@ -42,12 +42,9 @@ class TestBase(TestCase):
 		#Called after every test
 		db.session.remove()
 		db.drop_all()
-<<<<<<< HEAD
 
 class TestViews(TestBase)
 	
 	def  test_login_view(self):
 		response = self.client.get(url_for('login'))
 		self.asserEqual(response.status_code, 200)
-=======
->>>>>>> 22fb0add12428e1f133ad51fe87730abd41525cf
