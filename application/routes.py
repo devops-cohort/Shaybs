@@ -1,6 +1,6 @@
 from flask import abort, render_template, redirect, url_for, request, flash
 from application import app, db, bcrypt, login_manager
-from application.models import Posts, Books, Users
+from application.models import Posts, Books, Users, Reviews
 from application.forms import PostForm, Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -92,8 +92,13 @@ def delete_books(id):
 
 
 @app.route('/reviews')
+@login_required
 def reviews():
-	return render_template('reviews.html', title='Reviews')
+
+    reviews = Reviews.query.all()
+
+	return render_template('reviews.html', title='Reviews', reviews=reviews)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
