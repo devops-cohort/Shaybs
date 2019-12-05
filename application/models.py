@@ -3,19 +3,6 @@ from flask_login import UserMixin
 from datetime import datetime
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
-class Posts(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	title = db.Column(db.String(100), nullable=False, unique=True)
-	content = db.Column(db.String(500), nullable=False, unique=True)
-	date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-	user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-
-	def __repr__(self):
-		return ''.join([
-			'User ID: ', self.users.id, '\r\n',
-			'Title: ', self.title, '\r\n', self.content
-			])
-
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)

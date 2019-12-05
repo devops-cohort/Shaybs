@@ -217,26 +217,6 @@ def register():
                 return redirect(url_for('login'))
         return render_template('register.html', title='Register', form=form)
 
-@app.route('/post', methods=['GET', 'POST'])
-@login_required
-def post():
-	form = PostForm()
-	if form.validate_on_submit():
-
-		postData = Posts(
-		title=form.title.data,
-		content=form.content.data,
-                author=current_user
-                )
-
-		db.session.add(postData)
-		db.session.commit()
-		return redirect(url_for('home'))
-
-	else:
-		print(form.errors)
-	return render_template('post.html', title='Post', form=form)
-
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():

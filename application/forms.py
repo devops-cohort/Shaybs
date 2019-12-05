@@ -21,23 +21,6 @@ class LoginForm(FlaskForm):
 
         remember = BooleanField('Remember Me')
         submit = SubmitField('Login')
-
-class PostForm(FlaskForm):
-	title = StringField('Title',
-		validators=[
-			DataRequired(),
-			Length(min=2, max=100)
-		]
-	)
-
-	content = StringField('content',
-		validators=[
-			DataRequired(),
-			Length(min=2,max=100)
-		]
-	)
-
-	submit = SubmitField('Post Content')
 	
 class Book_PostForm(FlaskForm):
 	book = StringField('Book',
