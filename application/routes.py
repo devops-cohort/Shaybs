@@ -148,6 +148,18 @@ def edit_review(id):
 
     return render_template('review.html', action="Edit", add_review=add_review, review=review, form=form, title="Edit Review")
 
+@app.route('/reviews/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_review(id):
+    review = Reviews.query.get_or_404(id)
+    db.session.delete(review)
+    db.session.commit()
+    flash('You have successfully edited the review')
+    return redirect(url_for('reviews'))
+
+    return render_template(title="Delete Review")
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
