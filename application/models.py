@@ -38,7 +38,7 @@ class Reviews(db.Model):
 
 	def __repr__(self):
 		return  ''.join([
-			'Book: ', self.book_posts.book, '\r\n',
+			'Book: ', 'self.book_posts.book', '\r\n',
 			'Reviewer',  self.review_author, '\r\n',
 			self.review
 			])
