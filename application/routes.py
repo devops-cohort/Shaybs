@@ -36,20 +36,19 @@ def add_book():
 
     form = Book_PostForm()
     if form.validate_on_submit():
-            book = Book_Posts(
-            book=form.book.data,
-            author=form.author.data,
-            description=form.description.data,
-            rating=form.rating.data
-    )
-    try:
+        book = Book_Posts(
+        book=form.book.data,
+        author=form.author.data,
+        description=form.description.data,
+        rating=form.rating.data
+        )
+        try:
             db.session.add(postData)
             db.session.commit()
             flash('You have successfully added a new book')
-    except:
+        except:
             flash('Error: The book already exists')
-
-    return redirect(url_for('books'))
+        return redirect(url_for('books'))
 
     return render_template('book.html', action="Add", title='Add Book', form=form, add_book=add_book)
 
