@@ -108,11 +108,12 @@ def add_review():
     form = ReviewForm()
     if form.validate_on_submit():
         review = Reviews(
+        book_ref=form.book.data,
         review_author=form.review_author.data,
         review=form.review.data,
         rating=form.rating.data
         )
-        try:
+        try
             db.session.add(review)
             db.session.commit()
             flash('You have successfully added a new Review')
@@ -121,6 +122,7 @@ def add_review():
         return redirect(url_for('reviews'))
 
     return render_template('review.html', action="Add", title='Add Review', form=form, add_review=add_review)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
