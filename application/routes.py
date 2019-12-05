@@ -43,7 +43,7 @@ def add_book():
         rating=form.rating.data
         )
         try:
-            db.session.add(postData)
+            db.session.add(book)
             db.session.commit()
             flash('You have successfully added a new book')
         except:
