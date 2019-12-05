@@ -25,6 +25,22 @@ def books():
 
         books = Book_Posts.query.all()
         form = Book_PostForm()
+        if form.validate_on_submit():
+                postData = Book_Posts(
+                book=form.book.data,
+                author=form.author.data,
+                description=form.description.data,
+                rating=form.rating.data
+        )
+        try:
+                db.session.add(postData)
+                db.session.commit()
+                return redirect(url_for('books'))
+                flash('You have successfully added a new book')
+        except:
+                flash('Error: The book already exists')
+
+        return redirect(url_for('list_books'))
 
         return render_template('books.html', title='Books', form=form, books=books)
 
