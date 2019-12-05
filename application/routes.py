@@ -21,7 +21,7 @@ def about():
 @app.route('/books', methods=['GET', 'POST'])
 @login_required
 def books():
-        #List all books
+    #List all books
 
     books = Books.query.all()
 
@@ -94,6 +94,7 @@ def delete_books(id):
 @app.route('/reviews')
 @login_required
 def reviews():
+
     reviews = Reviews.query.all()
 
 	return render_template('reviews.html', title='Reviews', reviews=reviews)
