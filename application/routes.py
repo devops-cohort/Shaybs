@@ -97,7 +97,7 @@ def reviews():
 
     reviews = Reviews.query.all()
 
-	return render_template('reviews.html', title='Reviews', reviews=reviews)
+    return render_template('reviews.html', title='Reviews', reviews=reviews)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
