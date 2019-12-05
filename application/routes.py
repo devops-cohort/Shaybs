@@ -1,6 +1,6 @@
 from flask import abort, render_template, redirect, url_for, request, flash
 from application import app, db, bcrypt, login_manager
-from application.models import Posts, Book_Posts, Users
+from application.models import Posts, Books, Users
 from application.forms import PostForm, Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -23,7 +23,7 @@ def about():
 def books():
         #List all books
 
-    books = Book_Posts.query.all()
+    books = Books.query.all()
 
     return render_template('books.html', title='Books', books=books)
 
@@ -36,7 +36,7 @@ def add_book():
 
     form = Book_PostForm()
     if form.validate_on_submit():
-        book = Book_Posts(
+        book = Books(
         book=form.book.data,
         author=form.author.data,
         description=form.description.data,
@@ -58,7 +58,7 @@ def edit_books(id):
 
     add_book = False
 
-    book = Book_Posts.query.get_or_404(id)
+    book = Books.query.get_or_404(id)
     form = Book_PostForm(obj=book)
     if form.validate_on_submit():
         book.book = form.book.data
@@ -81,7 +81,7 @@ def edit_books(id):
 @login_required
 def delete_books(id):
 
-    book = Book_Posts.query.get_or_404(id)
+    book = Books.query.get_or_404(id)
     db.session.delete(book)
     db.session.commit()
     flash('You have successfully deleted a book')
