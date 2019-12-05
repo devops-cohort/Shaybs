@@ -50,7 +50,7 @@ def add_book():
 
     return redirect(url_for('books'))
 
-    return render_template('books.html', action="Add", title='Add Book', form=form, add_book=add_book)
+    return render_template('book.html', action="Add", title='Add Book', form=form, add_book=add_book)
 
 @app.route('/books/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
