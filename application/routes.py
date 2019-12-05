@@ -81,8 +81,8 @@ def edit_books(id):
 @login_required
 def delete_books(id):
 
-    book = Books.query.get_or_404(id)
-    db.session.delete(book)
+    book = db.session.query(Books).get(id)
+    book.Reviews = []
     db.session.commit()
     flash('You have successfully deleted a book')
 
