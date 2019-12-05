@@ -7,8 +7,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route('/')
 @app.route('/home')
 def home():
-	postData = Posts.query.all()
-	return render_template('home.html', title='Home', posts=postData)
+	return render_template('home.html', title='Home')
 
 @app.route('/about')
 def about():
