@@ -77,18 +77,9 @@ class TestViews(TestBase):
 		response = self.client.get(url_for('add_book'))
 		self.assertEqual(response.status_code, 302)
 
-	def  test_delete_book_view(self):
-		response = self.client.get(url_for('delete_book'))
-		self.assertEqual(response.status_code, 302)
-
 	def  test_add_review_view(self):
 		response = self.client.get(url_for('add_review'))
 		self.assertEqual(response.status_code, 302)
-
-	def  test_edit_review_view(self):
-		response = self.client.get(url_for('edit_review'))
-		self.assertEqual(response.status_code, 302)
-
 
 	def  test_logout_view(self):
 		response = self.client.get(url_for('logout'))
