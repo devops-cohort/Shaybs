@@ -14,7 +14,7 @@ class Posts(db.Model):
 			'User ID: ', self.users.id, '\r\n',
 			'Title: ', self.title, '\r\n', self.content
 			])
-		
+
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50), nullable=False)
@@ -27,6 +27,21 @@ class Users(db.Model, UserMixin):
             return ''.join(['User ID: ', str(self.id), '\r\n',	
                             'Email: ', self.email, '\r\n',
                            'Name: ', self.first_name, ' ', self.last_name])
+
+
+class Reviews(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	review_author = db.Column(db.String(100), nullable=False)
+	review = db.Column(db.String(2000), nullable=False)
+	rating = db.Column(db.Integer)
+	book_id = db.Column(db.Integer, db.ForeignKey('book_posts.id'), nullable=False)
+
+	def __repr__(self):
+		return  ''.join([
+			'Book: ', self.book_posts.book, '\r\n',
+			'Reviewer',  self.review_author, '\r\n',
+			self.review
+			])
 
 class Book_Posts(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
@@ -42,16 +57,3 @@ class Book_Posts(db.Model, UserMixin):
 			'Author: ', self.author
 			])
 
-class Reviews(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	review_author = db.Column(db.String(100), nullable=False)
-	review = db.Column(db.String(2000), nullable=False)
-	rating = db.Column(db.Integer)
-	book_id = db.Column(db.Integer, db.ForeignKey('book_posts.id'), nullable=False)
-
-	def __repr__(self):
-		return  ''.join([
-			'Book: ', self.book_posts.book, '\r\n',
-			'Reviewer',  self.review_author, '\r\n',
-			self.review
-			])
