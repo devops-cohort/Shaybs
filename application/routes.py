@@ -56,7 +56,7 @@ def add_book():
 @login_required
 def edit_books(id):
 
-    book = book.query.get_or_404(id)
+    book = Book_Posts.query.get_or_404(id)
     form = Book_PostForm(obj=book)
     if form.validate_on_submit():
         book.book = form.book.data
