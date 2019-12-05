@@ -21,14 +21,14 @@ class Book_Posts(db.Model):
 	author = db.Column(db.String(100), nullable=False)
 	description = db.Column(db.String(250), nullable=False)
 	rating = db.Column(db.Integer)
-	reviews = db.relationship('Reviews', backref='book_ref', lazy=True)
+	#reviews = db.relationship('Reviews', backref='book_ref', lazy=True)
 
 
-	def __repr__(self):
-		return ''.join([
-			'Book: ', self.book, '\r\n',
-			'Author: ', self.author
-			])
+	#def __repr__(self):
+	#	return ''.join([
+	#		'Book: ', self.book, '\r\n',
+	#		'Author: ', self.author
+	#		])
 
 class Users(db.Model, UserMixin):
         id = db.Column(db.Integer, primary_key=True)
