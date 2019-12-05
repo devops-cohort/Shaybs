@@ -68,6 +68,29 @@ class Book_PostForm(FlaskForm):
 
 	submit = SubmitField('Post Content')
 
+class ReviewForm(FlaskForm):
+        review_author = StringField('Review Author',
+                validators=[
+                        DataRequired(),
+                        Length(min=2, max=60)
+                ]
+        )
+
+        review = StringField('Review',
+                validators=[
+                        DataRequired(),
+                        Length(min=2, max=2000)
+                ]
+        )
+
+        rating = IntegerField('Rating',
+                validators=[
+                        NumberRange(min=0,max=5,message='Rating out of range')
+                ]
+        )
+
+        submit = SubmitField('Post Content')
+
 class RegistrationForm(FlaskForm):
         first_name = StringField('First Name',
                 validators=[

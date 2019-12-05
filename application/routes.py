@@ -1,7 +1,7 @@
 from flask import abort, render_template, redirect, url_for, request, flash
 from application import app, db, bcrypt, login_manager
 from application.models import Posts, Books, Users, Reviews
-from application.forms import PostForm, Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm
+from application.forms import PostForm, Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm, ReviewForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/')
@@ -98,6 +98,29 @@ def reviews():
     reviews = Reviews.query.all()
 
     return render_template('reviews.html', title='Reviews', reviews=reviews)
+
+@app.route('/reviews/add', methods=['GET', 'POST'])
+@login_required
+def add_review():
+
+    add_review = True
+
+    form = ReviewForm()
+    if form.validate_on_submit():
+        review = Reviews(
+        author=form.review_author.data,
+        review=form.review.data,
+        rating=form.rating.data
+        )
+        try:
+            db.session.add(review)
+            db.session.commit()
+            flash('You have successfully added a new book')
+        except:
+            flash('Error: The book already exists')
+        return redirect(url_for('books'))
+
+    return render_template('review.html', action="Add", title='Add Review', form=form, add_book=add_review)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

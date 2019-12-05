@@ -1,12 +1,28 @@
+{% import "bootstrap/wtf.html" as wtf %}
 {% extends "layout.html" %}
-{% block title %}Reviews{% endblock %}
+{% block title %}Login{% endblock %}
 {% block body_content %}
 <div class="content-section">
-  <div class="center">
-        <h1> Reviews </h1>
-        <p> Here you can read reviews </p>
-  </div>
-</div>			
+	<div class="center">
+    <h1> Reviews </h1>
+    <p> Here you can read reviews </p>
+    <h1>Login</h1>
+    <br/>
+    {{ wtf.quick_form(form) }}
 
+	  	<div style="text-align: center">
+	 	   {% else %}
+	    	    <div style="text-align: center">
+	            <h3> No reviews have been added. </h3>
+	            <hr class="intro-divider">
+			{% endif %}
+	            <a href="{{ url_for('add_review') }}" class="btn btn-default btn-lg">
+	    			<i class="fa fa-plus"></i>
+	    			Add Review
+				</a>
+			</div>
+		</div>
+
+	</div>
+</div>
 {% endblock body_content %}
-
