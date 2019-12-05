@@ -54,7 +54,7 @@ def add_book():
 
 @app.route('/books/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
-def edit_books():
+def edit_books(id):
 
     book = book.query.get_or_404(id)
     form = Book_PostForm(obj=book)
@@ -77,7 +77,7 @@ def edit_books():
 
 @app.route('/books/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
-def delete_books():
+def delete_books(id):
 
     book = book.query.get_or_404(id)
     db.session.delete(book)
