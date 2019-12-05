@@ -118,9 +118,9 @@ def add_review():
             flash('You have successfully added a new book')
         except:
             flash('Error: The book already exists')
-        return redirect(url_for('books'))
+        return redirect(url_for('reviews'))
 
-    return render_template('review.html', action="Add", title='Add Review', form=form, add_book=add_review)
+    return render_template('review.html', action="Add", title='Add Review', form=form, add_review=add_review)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
