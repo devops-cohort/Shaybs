@@ -68,7 +68,7 @@ def edit_books(id):
         db.session.commit()
         flash('You have successfully edited the book')
         #return to books list
-        return render_template('books.html')
+        return redirect(url_for('books'))
 
     form.rating.data = book.rating
     form.description.data = book.description
