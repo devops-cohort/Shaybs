@@ -27,7 +27,7 @@ class TestBase(TestCase):
 		#Create test admin user
 		admin = Users(first_name="admin", last_name="admin", email="admin@admin.com", password="admin2016")
 		employee = Users(first_name="test", last_name="user", email="test@user.com", password="test2016")
-		#BenjaminFranklin = Book_Posts(book="An American Life: Benjamin Franklin", author="Walter Isaacson", description="It is a biography of Benjamin Franklin", rating="5")
+		#BenjaminFranklin = Books(book="An American Life: Benjamin Franklin", author="Walter Isaacson", description="It is a biography of Benjamin Franklin", rating="5")
 
 		#Save users to the databse
 		db.session.add(admin)
