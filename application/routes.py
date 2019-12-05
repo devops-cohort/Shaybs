@@ -94,11 +94,9 @@ def delete_books(id):
 @app.route('/reviews')
 @login_required
 def reviews():
-
     reviews = Reviews.query.all()
 
 	return render_template('reviews.html', title='Reviews', reviews=reviews)
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
