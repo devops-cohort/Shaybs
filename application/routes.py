@@ -24,8 +24,9 @@ def books():
         #List all books
 
         books = Book_Posts.query.all()
+        form = Book_PostForm()
 
-        return render_template('books.html', title='Books', books=books)
+        return render_template('books.html', title='Books', form=form, books=books)
 
 
 @app.route('/books/add', methods=['GET', 'POST'])
