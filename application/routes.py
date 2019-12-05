@@ -108,7 +108,7 @@ def add_review():
     form = ReviewForm()
     if form.validate_on_submit():
         review = Reviews(
-        author=form.review_author.data,
+        review_author=form.review_author.data,
         review=form.review.data,
         rating=form.rating.data
         )
