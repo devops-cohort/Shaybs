@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms import StringField, IntegerField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from application.models import Users, Books, Reviews
