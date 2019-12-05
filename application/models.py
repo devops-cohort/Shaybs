@@ -15,7 +15,7 @@ class Posts(db.Model):
 			'Title: ', self.title, '\r\n', self.content
 			])
 
-class BookTable(db.Model):
+class Book_Posts(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	book = db.Column(db.String(60), nullable=False, unique=True)
 	author = db.Column(db.String(100), nullable=False)
@@ -48,7 +48,7 @@ class Reviews(db.Model):
 	review_author = db.Column(db.String(100), nullable=False)
 	review = db.Column(db.String(2000), nullable=False)
 	rating = db.Column(db.Integer)
-	book_id = db.Column(db.Integer, db.ForeignKey('booktable.id'), nullable=False)
+	book_id = db.Column(db.Integer, db.ForeignKey('book_posts.id'), nullable=False)
 
 	def __repr__(self):
 		return  ''.join([
