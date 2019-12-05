@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request, flash
+from flask import abort, render_template, redirect, url_for, request, flash
 from application import app, db, bcrypt, login_manager
 from application.models import Posts, Book_Posts, Users
 from application.forms import PostForm, Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm
@@ -23,46 +23,70 @@ def about():
 def books():
         #List all books
 
-        books = Book_Posts.query.all()
+    books = Book_Posts.query.all()
 
-        return render_template('books.html', title='Books', books=books)
+    return render_template('books.html', title='Books', books=books)
 
 
 @app.route('/books/add', methods=['GET', 'POST'])
 @login_required
-def add_books():
+def add_book():
 
-        form = Book_PostForm()
-        if form.validate_on_submit():
-                postData = Book_Posts(
-                book=form.book.data,
-                author=form.author.data,
-                description=form.description.data,
-                rating=form.rating.data
-        )
-        try:
-                db.session.add(postData)
-                db.session.commit()
-                return redirect(url_for('books'))
-                flash('You have successfully added a new book')
-        except:
-                flash('Error: The book already exists')
+    form = Book_PostForm()
+    if form.validate_on_submit():
+            postData = Book_Posts(
+            book=form.book.data,
+            author=form.author.data,
+            description=form.description.data,
+            rating=form.rating.data
+    )
+    try:
+            db.session.add(postData)
+            db.session.commit()
+            return redirect(url_for('books'))
+            flash('You have successfully added a new book')
+    except:
+            flash('Error: The book already exists')
 
-        return redirect(url_for('books'))
+    return redirect(url_for('books'))
 
-        return render_template('books.html', action="Add", title='Add Book', form=form, add_books=add_books)
+    return render_template('books.html', action="Add", title='Add Book', form=form, add_book=add_book)
 
-@app.route('/books/edit', methods=['GET', 'POST'])
+@app.route('/books/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_books():
 
+    book = book.query.get_or_404(id)
+    form = Book_PostForm(obj=book)
+    if form.validate_on_submit():
+        book.book = form.book.data
+        book.author = form.author.data
+        book.description = form.description.data
+        book.rating = form.rating.data
+        db.session.commit()
+        flash('You have successfully edited the book')
+        #return to books list
         return render_template('books.html')
 
-@app.route('/books/delete', methods=['GET', 'POST'])
+    form.rating.data = book.rating
+    form.description.data = book.description
+    form.author.data = book.author
+    form.book.data = book.book
+
+    return render_template('book.html', action="Edit", add_book=add_book, book=book, form=form, title="Add Book")
+
+@app.route('/books/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
 def delete_books():
 
-        return render_template('books.html')
+    book = book.query.get_or_404(id)
+    db.session.delete(book)
+    db.session.commit()
+    flash('You have successfully deleted a book')
+
+    return redirect(url_for('books'))
+
+    return render_template(title="Delete Book")
 
 
 @app.route('/reviews')
