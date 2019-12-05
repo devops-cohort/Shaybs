@@ -32,6 +32,8 @@ def books():
 @login_required
 def add_book():
 
+    add_book = True
+
     form = Book_PostForm()
     if form.validate_on_submit():
             book = Book_Posts(
@@ -54,6 +56,8 @@ def add_book():
 @app.route('/books/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_books(id):
+
+    add_book = False
 
     book = Book_Posts.query.get_or_404(id)
     form = Book_PostForm(obj=book)
