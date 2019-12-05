@@ -11,20 +11,17 @@
           			<thead>
 		                <tr>
 		                  <th width="10%"> Author </th>
-		                  <th width="50%"> Review </th>
+		                  <th width="80%"> Review </th>
 		                  <th width="10%"> Rating </th>
-		                  <th width="10%"> Edit </th>
-		                  <th width="10%"> Delete </th>
 		                </tr>
           			</thead>
           			<tbody>
-          				{% for review in reviewss %}
+          				{% for review in reviews %}
 			                <tr>
 			                  	<td> {{ review.review_author }} </td>
 			                  	<td> {{ review.review }} </td>
 			                  	<td> {{ review.rating }} </td>
-			                  	<td> </td>
-			                  	<td> </td>
+
 			                </tr>
 		             	{% endfor %}
           			</tbody>
