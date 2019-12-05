@@ -21,14 +21,14 @@ class Book_Posts(db.Model):
 	author = db.Column(db.String(100), nullable=False)
 	description = db.Column(db.String(250), nullable=False)
 	rating = db.Column(db.Integer)
-	#reviews = db.relationship('Reviews', backref='book_ref', lazy=True)
+	reviews = db.relationship('Reviews', backref='book_ref', lazy=True)
 
 
-	#def __repr__(self):
-	#	return ''.join([
-	#		'Book: ', self.book, '\r\n',
-	#		'Author: ', self.author
-	#		])
+	def __repr__(self):
+		return ''.join([
+			'Book: ', self.book, '\r\n',
+			'Author: ', self.author
+			])
 
 class Users(db.Model, UserMixin):
         id = db.Column(db.Integer, primary_key=True)
@@ -43,16 +43,16 @@ class Users(db.Model, UserMixin):
                                 'Email: ', self.email, '\r\n',
                                'Name: ', self.first_name, ' ', self.last_name])
 
-#class Reviews(db.Model):
-#	id = db.Column(db.Integer, primary_key=True)
-#	review_author = db.Column(db.String(100), nullable=False)
-#	review = db.Column(db.String(2000), nullable=False)
-#	rating = db.Column(db.Integer)
-#	book_id = db.Column(db.Integer, db.ForeignKey('book_posts.id'), nullable=False)
-#
-#	def __repr__(self):
-#		return  ''.join([
-#			'Book: ', self.book_posts.book, '\r\n',
-##			'Reviewer',  self.review_author, '\r\n',
-#			self.review
-#			])
+class Reviews(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	review_author = db.Column(db.String(100), nullable=False)
+	review = db.Column(db.String(2000), nullable=False)
+	rating = db.Column(db.Integer)
+	book_id = db.Column(db.Integer, db.ForeignKey('book_posts.id'), nullable=False)
+
+	def __repr__(self):
+		return  ''.join([
+			'Book: ', self.book_posts.book, '\r\n',
+			'Reviewer',  self.review_author, '\r\n',
+			self.review
+			])
