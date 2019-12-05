@@ -9,7 +9,7 @@ class Users(db.Model, UserMixin):
     last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(250), nullable=False, unique=True)
     password = db.Column(db.String(500), nullable=False)
-    posts = db.relationship('Posts', backref='author', lazy=True)
+    #posts = db.relationship('Posts', backref='author', lazy=True)
     
     def __repr__(self):
             return ''.join(['User ID: ', str(self.id), '\r\n',	
