@@ -72,7 +72,7 @@ class Book_PostForm(FlaskForm):
 class ReviewForm(FlaskForm):
         book = QuerySelectField(
                 query_factory=lambda: Books.query.all(),
-                get_label="name"
+                get_label="book"
         )
         review_author = StringField('Review Author',
                 validators=[
