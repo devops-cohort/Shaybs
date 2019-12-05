@@ -75,7 +75,7 @@ def edit_books(id):
     form.author.data = book.author
     form.book.data = book.book
 
-    return render_template('book.html', action="Edit", add_book=add_book, book=book, form=form, title="Add Book")
+    return render_template('book.html', action="Edit", add_book=add_book, book=book, form=form, title="Edit Book")
 
 @app.route('/books/delete/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -123,6 +123,30 @@ def add_review():
 
     return render_template('review.html', action="Add", title='Add Review', form=form, add_review=add_review)
 
+@app.route('/reviews/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_review(id):
+
+    add_review = False
+
+    review = Reviews.query.get_or_404(id)
+    form = ReviewForm(obj=review)
+    if form.validate_on_submit():
+        review.review_author = form.review_author.data
+        review.review = form.review.data
+        review.rating = form.rating.data
+        book_ref = form.book.data
+        db.session.commit()
+        flash('You have successfully edited the book')
+        #return to books list
+        return redirect(url_for('books'))
+
+    form.book.data = review.book_ref
+    form.rating.data = review.rating
+    form.review.data = review.review
+    form.revie_author.data = review.review_author
+
+    return render_template('review.html', action="Edit", add_review=add_review, review=review, form=form, title="Edit Review")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
