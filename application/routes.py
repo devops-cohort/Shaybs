@@ -144,7 +144,7 @@ def edit_review(id):
     form.book.data = review.book_ref
     form.rating.data = review.rating
     form.review.data = review.review
-    form.revie_author.data = review.review_author
+    form.review_author.data = review.review_author
 
     return render_template('review.html', action="Edit", add_review=add_review, review=review, form=form, title="Edit Review")
 
