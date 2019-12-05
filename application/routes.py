@@ -40,7 +40,7 @@ def books():
         except:
                 flash('Error: The book already exists')
 
-        return redirect(url_for('list_books'))
+        return redirect(url_for('books'))
 
         return render_template('books.html', title='Books', form=form, books=books)
 
