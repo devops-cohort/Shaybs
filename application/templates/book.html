@@ -1,3 +1,4 @@
+{% import "bootstrap/utils.html" as utils %}
 {% import "bootstrap/wtf.html" as wtf %}
 {% extends "layout.html" %}
 {% block title %}
@@ -8,22 +9,18 @@
     {% endif %}
 {% endblock %}
 {% block body_content %}
+    
 <div class="content-section">
- <div class="outer">
-    <div class="middle">
-      <div class="inner">
-        <div class="center">
-            <br>
-            {% if add_book %}
-                <h1>Add Book</h1>
-            {% else %}
-                <h1>Edit Book</h1>
-            {% endif %}
-            <br/>
-            {{ wtf.quick_form(form) }}
-        </div>
-      </div>
+    <div class="center">
+        <br>
+        {% if add_book %}
+            <h1>Add Book</h1>
+        {% else %}
+            <h1>Edit Book</h1>
+        {% endif %}
+        <br/>
+        {{ wtf.quick_form(form) }}
     </div>
-  </div>
-</div>
+</div>          
+
 {% endblock body_content %}
