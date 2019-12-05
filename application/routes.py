@@ -137,9 +137,9 @@ def edit_review(id):
         review.rating = form.rating.data
         book_ref = form.book.data
         db.session.commit()
-        flash('You have successfully edited the book')
+        flash('You have successfully edited the review')
         #return to books list
-        return redirect(url_for('books'))
+        return redirect(url_for('reviews'))
 
     form.book.data = review.book_ref
     form.rating.data = review.rating
