@@ -113,7 +113,7 @@ def add_review():
         rating=form.rating.data,
         book_ref=form.book.data
         )
-        try
+        try:
             db.session.add(review)
             db.session.commit()
             flash('You have successfully added a new Review')
