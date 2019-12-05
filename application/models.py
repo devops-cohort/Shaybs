@@ -14,6 +14,19 @@ class Posts(db.Model):
 			'User ID: ', self.users.id, '\r\n',
 			'Title: ', self.title, '\r\n', self.content
 			])
+		
+class Users(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(250), nullable=False, unique=True)
+    password = db.Column(db.String(500), nullable=False)
+    posts = db.relationship('Posts', backref='author', lazy=True)
+    
+    def __repr__(self):
+            return ''.join(['User ID: ', str(self.id), '\r\n',	
+                            'Email: ', self.email, '\r\n',
+                           'Name: ', self.first_name, ' ', self.last_name])
 
 class Book_Posts(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
@@ -23,25 +36,11 @@ class Book_Posts(db.Model, UserMixin):
 	rating = db.Column(db.Integer)
 	reviews = db.relationship('Reviews', backref='book_ref', lazy=True)
 
-
 	def __repr__(self):
 		return ''.join([
 			'Book: ', self.book, '\r\n',
 			'Author: ', self.author
 			])
-
-class Users(db.Model, UserMixin):
-        id = db.Column(db.Integer, primary_key=True)
-        first_name = db.Column(db.String(50), nullable=False)
-        last_name = db.Column(db.String(50), nullable=False)
-        email = db.Column(db.String(250), nullable=False, unique=True)
-        password = db.Column(db.String(500), nullable=False)
-        posts = db.relationship('Posts', backref='author', lazy=True)
-        
-        def __repr__(self):
-                return ''.join(['User ID: ', str(self.id), '\r\n',	
-                                'Email: ', self.email, '\r\n',
-                               'Name: ', self.first_name, ' ', self.last_name])
 
 class Reviews(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
