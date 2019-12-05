@@ -111,13 +111,14 @@ def add_review():
         review_author=form.review_author.data,
         review=form.review.data,
         rating=form.rating.data
+        book_id=1
         )
         try:
             db.session.add(review)
             db.session.commit()
-            flash('You have successfully added a new book')
+            flash('You have successfully added a new Reviews')
         except:
-            flash('Error: The book already exists')
+            flash('Error: The review already exists')
         return redirect(url_for('reviews'))
 
     return render_template('review.html', action="Add", title='Add Review', form=form, add_review=add_review)
