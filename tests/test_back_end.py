@@ -44,9 +44,17 @@ class TestBase(TestCase):
 		db.drop_all()
 
 class TestViews(TestBase):
-	
+
+	def  test_home_view(self):
+		response = self.client.get(url_for('home'))
+		self.assertEqual(response.status_code, 200)
+
 	def  test_login_view(self):
 		response = self.client.get(url_for('login'))
+		self.assertEqual(response.status_code, 200)
+
+	def  test_register_view(self):
+		response = self.client.get(url_for('register'))
 		self.assertEqual(response.status_code, 200)
 
 	def  test_about_view(self):
@@ -55,24 +63,16 @@ class TestViews(TestBase):
 
 	def  test_account_view(self):
 		response = self.client.get(url_for('account'))
-		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.status_code, 302)
+
+	def  test_books_view(self):
+		response = self.client.get(url_for('books'))
+		self.assertEqual(response.status_code, 302)
+
+	def  test_reviews_view(self):
+		response = self.client.get(url_for('reviews'))
+		self.assertEqual(response.status_code, 302)
 
 	def  test_book_view(self):
-		response = self.client.get(url_for('books'))
-		self.assertEqual(response.status_code, 200)
-
-	def  test_review_view(self):
-		response = self.client.get(url_for('reviews'))
-		self.assertEqual(response.status_code, 200)
-
-	def  test_register_view(self):
-		response = self.client.get(url_for('register'))
-		self.assertEqual(response.status_code, 200)
-
-	def  test_review_view(self):
-		response = self.client.get(url_for('home'))
-		self.assertEqual(response.status_code, 200)
-
-	def  test_review_view(self):
 		response = self.client.get(url_for('book'))
-		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.status_code, 302)
