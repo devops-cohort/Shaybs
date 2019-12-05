@@ -108,10 +108,10 @@ def add_review():
     form = ReviewForm()
     if form.validate_on_submit():
         review = Reviews(
-        book_ref=form.book.data,
         review_author=form.review_author.data,
         review=form.review.data,
-        rating=form.rating.data
+        rating=form.rating.data,
+        book_ref=form.book.data
         )
         try
             db.session.add(review)
