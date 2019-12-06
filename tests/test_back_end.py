@@ -195,12 +195,12 @@ class Login(TestBase):
 		self.assertIn(b"Home Page", response.data)
 
 
-def login(self, email, password):
-    return self.client.post(
-        url_for('login'),
-        data=dict(email=email, password=password),
-        follow_redirects=True
-    )
+	def login(self, email, password):
+		return self.client.post(
+			url_for('login'),
+			data=dict(email=email, password=password),
+			follow_redirects=True
+			)
 
 	def logout(self):
 		return self.client.get(url_for('logout'), follow_redirects=True)
