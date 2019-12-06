@@ -178,16 +178,22 @@ class Login(TestBase):
 		self.assertIn(b"Home Page", response.data)
 
     # Ensure that posts show up on the main page
-	def test_login_page(self):
+	#def test_login_page(self):
 		#Users.create(first_name='admin', last_name='admin', email='joe@joes.com', password='12345')
 
-		response = self.client.post(
-			url_for('login'),
-			data={'email':'admin@admin.com', 'password':'admin2016'},
+	#	response = self.client.post(
+	#		url_for('login'),
+	#		data={'email':'admin@admin.com', 'password':'admin2016'},
 			#follow_redirects=True
-		)
-		self.assert_redirects(response, url_for('home'))
+	#	)
+	#	self.assert_redirects(response, url_for('home'))
 		#self.assertIn(b"Home Page", response.data)
+	def test_login_page(self):
+	Users.create(first_name='Joe', last_name='Joe', email='joe@joes.com', password='12345')
+		response = self.client.post(url_for('users.login'),
+			data={'email': 'joe@joes.com', 'password': '12345'})
+
+		self.assert_redirects(response, url_for('home'))
 
 
 if __name__ == '__main__':
