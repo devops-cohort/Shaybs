@@ -183,7 +183,7 @@ class Login(TestBase):
 
 		response = self.client.post(
 			url_for('login'),
-			data={'email'='admin@admin.com', password='admin2016'},
+			data={'email':'admin@admin.com', 'password':'admin2016'},
 			follow_redirects=True
 		)
 		self.assert_redirects(response, url_for('home'))
