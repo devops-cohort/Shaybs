@@ -165,22 +165,22 @@ class TestDelete(TestBase):
 
 
 #Test the models
-class ModelTests(TestBase):
-	#
-	def test_employee_model(self):
-		self.assertEqual(Employee.query.count(), 2)
+# class ModelTests(TestBase):
+# 	#
+# 	def test_employee_model(self):
+# 		self.assertEqual(Employee.query.count(), 2)
 
-	def test_role_model(self):
-		role = Role(name="CEO", description="Run the whole company")
-		db.session.add(role)
-		db.session.commit()
-		self.assertEqual(Role.query.count(), 1)
+# 	def test_role_model(self):
+# 		role = Role(name="CEO", description="Run the whole company")
+# 		db.session.add(role)
+# 		db.session.commit()
+# 		self.assertEqual(Role.query.count(), 1)
 
-	def test_role_model(self):
-		role = Role(name="CEO", description="Run the whole company")
-		db.session.add(role)
-		db.session.commit()
-		self.assertEqual(Role.query.count(), 1)
+# 	def test_role_model(self):
+# 		role = Role(name="CEO", description="Run the whole company")
+# 		db.session.add(role)
+# 		db.session.commit()
+# 		self.assertEqual(Role.query.count(), 1)
 
 class Login(TestBase):
 
