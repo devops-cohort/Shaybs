@@ -111,7 +111,7 @@ class TestUpdateDelete(TestBase):
 		self.assertNotEqual(employee[0].last_name, "user")
 		self.assertNotEqual(employee[0].email, "test@user.com")
 
-	def test_update_book(self)
+	def test_update_book(self):
 
 		book = Books.query.filter_by(id=2)
 
@@ -129,7 +129,7 @@ class TestUpdateDelete(TestBase):
 		self.assertNotEqual(book[0].description, "It stipulates business theory")
 		self.assertNotEqual(book[0].rating, "5")
 
-	#def test_update_review(id=2)
+	#def test_update_review(self):
 
 		#review = Reviews.query.filter_by(id=2)
 
