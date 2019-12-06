@@ -29,8 +29,8 @@ class TestBase(TestCase):
 		employee = Users(first_name="test", last_name="user", email="test@user.com", password="test2016")
 		BenjaminFranklin = Books(book="An American Life: Benjamin Franklin", author="Walter Isaacson", description="It is a biography of Benjamin Franklin", rating="5")
 		ZeroToOne = Books(book="Zero To One", author="Peter Thiel", description="It stipulates business theory", rating="5")
-		ShuaibReview = Books(review_author="Shuaib", review="", rating="5", book_id="2")
-		ThomasReview = Books(review_author="Thomas", review="", rating="5", book_id="2")
+		ShuaibReview = Reviews(review_author="Shuaib", review="", rating="5", book_id="2")
+		ThomasReview = Reviews(review_author="Thomas", review="", rating="5", book_id="2")
 
 
 		#Save/Add users to the databse
