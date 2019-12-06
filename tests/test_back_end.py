@@ -91,9 +91,9 @@ class TestUpdateDelete(TestBase):
 
 		employee = Users.query.filter_by(id=2)
 
-		employee.first_name = "NotTest"
-		employee.last_name = "NotUser"
-		employee.email = "NotTest@NotUser.com"
+		employee[0].first_name = "NotTest"
+		employee[0].last_name = "NotUser"
+		employee[0].email = "NotTest@NotUser.com"
 
 		db.session.commit()
 
