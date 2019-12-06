@@ -111,7 +111,7 @@ class TestUpdateDelete(TestBase):
 		self.assertNotEqual(employee[0].last_name, "user")
 		self.assertNotEqual(employee[0].email, "test@user.com")
 
-	def test_update_book(id=2)
+	def test_update_book(self)
 
 		book = Books.query.filter_by(id=2)
 
