@@ -29,6 +29,8 @@ class TestBase(TestCase):
 		employee = Users(first_name="test", last_name="user", email="test@user.com", password="test2016")
 		BenjaminFranklin = Books(book="An American Life: Benjamin Franklin", author="Walter Isaacson", description="It is a biography of Benjamin Franklin", rating="5")
 		ZeroToOne = Books(book="Zero To One", author="Peter Thiel", description="It stipulates business theory", rating="5")
+		#ShuaibReview = Books(review_author="Shuaib", review="", rating="5")
+		#ThomasReview = Books(review_author="Thomas", review="", rating="5")
 
 
 		#Save/Add users to the databse
@@ -38,6 +40,10 @@ class TestBase(TestCase):
 		#Save/Add book to database
 		db.session.add(BenjaminFranklin)
 		db.session.add(ZeroToOne)
+
+		#Save/Add reviews to database
+		#db.session.add(BenjaminFranklin)
+		#db.session.add(ZeroToOne)
 		db.session.commit()
 
 	def tearDown(self):
@@ -104,3 +110,37 @@ class TestUpdateDelete(TestBase):
 		self.assertNotEqual(employee[0].first_name, "test")
 		self.assertNotEqual(employee[0].last_name, "user")
 		self.assertNotEqual(employee[0].email, "test@user.com")
+
+	def test_update_book(id=2)
+
+		book = Books.query.filter_by(id=2)
+
+		book[0].book = "Not Zero To One"
+		book[0].author = "Not Peter Thiel"
+		book[0].description = "Does not stipulate business theory"
+		book[0].rating = "4"
+
+		db.session.commit()
+
+		employee = Users.query.filter_by(id=2)
+
+		self.assertNotEqual(book[0].book, "Zero To One")
+		self.assertNotEqual(book[0].author, "Peter Thiel")
+		self.assertNotEqual(book[0].description, "It stipulates business theory")
+		self.assertNotEqual(book[0].rating, "5")
+
+	#def test_update_review(id=2)
+
+		#review = Reviews.query.filter_by(id=2)
+
+		#review[0].review_author = "Not Zero To One"
+		#review[0].review = "Not Peter"
+		#review[0].rating = "4"
+
+		#db.session.commit()
+
+		#review = Users.query.filter_by(id=2)
+
+		#self.assertNotEqual(review[0].review_author, "Zero To One")
+		#self.assertNotEqual(review[0].review, "Peter Thiel")
+		#self.assertNotEqual(review[0].rating, "5")
