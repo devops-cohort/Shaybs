@@ -189,7 +189,7 @@ class Login(TestBase):
 	#	self.assert_redirects(response, url_for('home'))
 		#self.assertIn(b"Home Page", response.data)
 	def test_login_page(self):
-			db.session.add((first_name='Joe', last_name='Joe', email='joe@joes.com', password='12345')
+			db.session.add(first_name='Joe', last_name='Joe', email='joe@joes.com', password='12345')
 			db.session.commit()
 			response = self.client.post(url_for('users.login'),
 			data={'email': 'joe@joes.com', 'password': '12345'})
