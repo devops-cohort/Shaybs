@@ -42,8 +42,8 @@ class TestBase(TestCase):
 		db.session.add(ZeroToOne)
 
 		#Save/Add reviews to database
-		#db.session.add(BenjaminFranklin)
-		#db.session.add(ZeroToOne)
+		db.session.add(ShuaibReview)
+		db.session.add(ThomasReview)
 		db.session.commit()
 
 	def tearDown(self):
