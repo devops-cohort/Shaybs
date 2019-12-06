@@ -6,6 +6,7 @@ from os import getenv
 from application import app, db
 from application.models import Users, Books, Reviews
 
+
 class TestBase(TestCase):
 
 	def create_app(self):
@@ -93,7 +94,7 @@ class TestViews(TestBase):
 		response = self.client.get(url_for('logout'))
 		self.assertEqual(response.status_code, 302)
 
-class TestUpdateDelete(TestBase):
+class TestUpdate(TestBase):
 
 	def test_update_account(self):
 
@@ -143,3 +144,47 @@ class TestUpdateDelete(TestBase):
 		self.assertNotEqual(review[0].review_author, "Thomas")
 		self.assertNotEqual(review[0].review, "Interesting book")
 		self.assertNotEqual(review[0].rating, "5")
+
+
+class TestDelete(TestBase):
+	def test_update_review(self):
+
+		review = Reviews.query.filter_by(id=2)
+
+		review[0].review_author = "Not Thomas"
+		review[0].review = "Worst book ever"
+		review[0].rating = "1"
+		db.session.commit()
+
+		review = Reviews.query.filter_by(id=2)
+
+		self.assertNotEqual(review[0].review_author, "Thomas")
+		self.assertNotEqual(review[0].review, "Interesting book")
+		self.assertNotEqual(review[0].rating, "5")
+
+class Login(TestBase):
+	def test_update_review(self):
+
+    # Ensure that main page requires user login
+    def test_book_route_requires_login(self):
+        response = self.client.get('/', follow_redirects=True)
+        self.assertIn(b'Login', response.data)
+
+    # Ensure that welcome page loads
+    def test_welcome_route_works_as_expected(self):
+        response = self.client.get('/Home', follow_redirects=True)
+        self.assertIn(b'Home Page!', response.data)
+
+    # Ensure that posts show up on the main page
+    def test_posts_show_up_on_main_page(self):
+        response = self.client.post(
+            '/login',
+            data=dict(email="admin@admin.com", password="admin2016"),
+            follow_redirects=True
+        )
+        self.assertIn(b"Welcome to Shuaib's Book Web Application!", response.data)
+
+if __name__ == '__main__':
+    unittest.main()
+
+
