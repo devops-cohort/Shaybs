@@ -175,7 +175,7 @@ class Login(TestBase):
     # Ensure that welcome page loads
 	def test_welcome_route_works_as_expected(self):
 		response = self.client.get('/Home', follow_redirects=True)
-		self.assertIn(b'Home Page!', response.data)
+		self.assertIn('Home Page!', response.data)
 
     # Ensure that posts show up on the main page
 	def test_posts_show_up_on_main_page(self):
