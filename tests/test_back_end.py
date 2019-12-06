@@ -198,14 +198,14 @@ class Login(TestBase):
 
 
 	def login(client, username, password):
-		return client.post('/login', data=dict(
+		return client.post(url_for('login'), data=dict(
 			username=username,
 			password=password
 			), follow_redirects=True)
 
 
 	def logout(client):
-		return client.get('/logout', follow_redirects=True)
+		return client.get(url_for('logout'), follow_redirects=True)
 
 if __name__ == '__main__':
 	unittest.main()
