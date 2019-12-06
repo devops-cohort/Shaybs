@@ -204,8 +204,6 @@ class Login(TestBase):
 			),
 		follow_redirects=True)
 
-	def 
-
 	def logout(client):
 		return client.get(url_for('logout'), follow_redirects=True)
 
