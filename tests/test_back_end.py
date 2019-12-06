@@ -174,8 +174,8 @@ class Login(TestBase):
 
     # Ensure that welcome page loads
 	def test_home_route_works_as_expected(self):
-		response = self.client.get(url_for('books'), follow_redirects=True)
-		self.assertIn(b"Book Application", response.data)
+		response = self.client.get(url_for('home'), follow_redirects=True)
+		self.assertIn(b"Home Page", response.data)
 
     # Ensure that posts show up on the main page
 	def test_posts_show_up_on_main_page(self):
@@ -184,7 +184,7 @@ class Login(TestBase):
 			data=dict(email="admin@admin.com", password="admin2016"),
 			follow_redirects=True
 		)
-		self.assertIn(b"Book Application", response.data)
+		self.assertIn(b"", response.data)
 
 if __name__ == '__main__':
 	unittest.main()
