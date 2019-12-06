@@ -29,8 +29,8 @@ class TestBase(TestCase):
 		employee = Users(first_name="test", last_name="user", email="test@user.com", password="test2016")
 		BenjaminFranklin = Books(book="An American Life: Benjamin Franklin", author="Walter Isaacson", description="It is a biography of Benjamin Franklin", rating="5")
 		ZeroToOne = Books(book="Zero To One", author="Peter Thiel", description="It stipulates business theory", rating="5")
-		ShuaibReview = Reviews(review_author="Shuaib", review="", rating="5", book_id="2")
-		ThomasReview = Reviews(review_author="Thomas", review="", rating="5", book_id="2")
+		ShuaibReview = Reviews(review_author="Shuaib", review="Best book ever", rating="5", book_id="2")
+		ThomasReview = Reviews(review_author="Thomas", review="Interesting book", rating="5", book_id="2")
 
 
 		#Save/Add users to the databse
@@ -133,13 +133,13 @@ class TestUpdateDelete(TestBase):
 
 		review = Reviews.query.filter_by(id=2)
 
-		review[0].review_author = "Not Zero To One"
-		review[0].review = "Not Peter"
-		review[0].rating = "4"
+		review[0].review_author = "Not Thomas"
+		review[0].review = "Worst book ever"
+		review[0].rating = "1"
 		db.session.commit()
 
 		review = Reviews.query.filter_by(id=2)
 
-		self.assertNotEqual(review[0].review_author, "Zero To One")
-		self.assertNotEqual(review[0].review, "Peter Thiel")
+		self.assertNotEqual(review[0].review_author, "Thomas")
+		self.assertNotEqual(review[0].review, "Interesting book")
 		self.assertNotEqual(review[0].rating, "5")
