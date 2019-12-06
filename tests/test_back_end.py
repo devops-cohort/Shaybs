@@ -5,6 +5,7 @@ from flask_testing import TestCase
 from os import getenv
 from application import app, db
 from application.models import Users, Books, Reviews
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 class TestBase(TestCase):
@@ -188,15 +189,23 @@ class Login(TestBase):
 	#	)
 	#	self.assert_redirects(response, url_for('home'))
 		#self.assertIn(b"Home Page", response.data)
-	def test_login_page(self):
-		joe = Users(first_name='Joe', last_name='Joe', email='joe@joes.com', password='12345')
-		db.session.add(joe)
-		db.session.commit()
-		response = self.client.post(url_for('users.login'),
-			data={'email': 'joe@joes.com', 'password': '12345'}
-		)
-		self.assert_redirects(response, url_for('home'))
+	#def test_login_page(self):
+	#	joe = Users(first_name='Joe', last_name='Joe', email='joe@joes.com', password='12345')
+	#	db.session.add(joe)
+	###		data={'email': 'joe@joes.com', 'password': '12345'}
+	#	)
+	#	self.assert_redirects(response, url_for('home'))
 
+
+	def login(client, username, password):
+		return client.post('/login', data=dict(
+			username=username,
+			password=password
+			), follow_redirects=True)
+
+
+	def logout(client):
+		return client.get('/logout', follow_redirects=True)
 
 if __name__ == '__main__':
 	unittest.main()
