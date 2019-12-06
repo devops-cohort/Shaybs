@@ -197,12 +197,14 @@ class Login(TestBase):
 	#	self.assert_redirects(response, url_for('home'))
 
 
-	def login(client, username, password):
+	def login(client, email, password):
 		return client.post(url_for('login'), data=dict(
-			username=username,
+			email=email,
 			password=password
-			), follow_redirects=True)
+			),
+		follow_redirects=True)
 
+	def 
 
 	def logout(client):
 		return client.get(url_for('logout'), follow_redirects=True)
