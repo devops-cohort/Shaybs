@@ -99,7 +99,7 @@ class TestUpdateDelete(TestBase):
 
 		employee = Users.query.filter_by(id=2)
 
-		self.assertNotEqual(employee.first_name, "test")
-		self.assertNotEqual(employee.last_name, "user")
-		self.assertNotEqual(employee.email, "test@user.com")
+		self.assertNotEqual(employee[0].first_name, "test")
+		self.assertNotEqual(employee[0].last_name, "user")
+		self.assertNotEqual(employee[0].email, "test@user.com")
 
