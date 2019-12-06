@@ -2,35 +2,26 @@ pipeline{
 	agent any
 	stages{
 		stage("Update git repository") {
-			steps{
-				sh '''
-				ssh 34.89.12.90  << "BOB"
+			steps{sh '''ssh 35.242.162.81  << "BOB"
                 sudo su - jenkins
-                #!/bin/bash
                 cd Shaybs
                 git checkout development-test
                 git pull'''
 			}
 		}
 		stage("Reset Systemd") {
-			steps{
-				sh '''
-				ssh 34.89.12.90  << BOB
-				sudo su - jenkins
-				cd Shaybs
+			steps{sh '''ssh 35.242.162.81  << BOB
+			sudo su - jenkins
+			cd Shaybs
                 git checkout development-test
-				# install the service script
-                sudo cp flask-app.service /etc/systemd/system/
-                # reload the service scripts
+			sudo cp flask-app.service /etc/systemd/system/
                 sudo systemctl daemon-reload
-                # stop the old service
-                sudo systemctl stop flask-app
-                # configure python virtual environment and install dependencies'''
+                sudo systemctl stop flask-app'''
 			}
 		}
 		stage("Initialising project") {
 			steps{
-				sh '''ssh 34.89.12.90  << "BOB"
+				sh '''ssh 35.242.162.81  << "BOB"
 				sudo su - jenkins
 				cd Shaybs
                 git checkout development-test
@@ -50,7 +41,7 @@ pipeline{
 		}
 		stage("Deploy") {
 			steps{
-				sh '''ssh 34.89.12.90  << "BOB"
+				sh '''ssh 35.242.162.81  << "BOB"
 				sudo su - jenkins
 				cd Shaybs
                 git checkout development-test
