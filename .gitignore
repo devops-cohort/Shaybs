@@ -1,3 +1,4 @@
+/Jenkinsfile
 /.coverage
 /ignore/*
 /application/__init__.pyc
