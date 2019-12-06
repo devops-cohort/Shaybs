@@ -89,7 +89,7 @@ class TestUpdateDelete(TestBase):
 
 	def test_update_account(self):
 
-		employee = Users.query.filter_by(user_id=2)
+		employee = Users.query.filter_by(user.id=2)
 
 		employee.first_name = "NotTest"
 		employee.last_name = "NotUser"
@@ -97,7 +97,7 @@ class TestUpdateDelete(TestBase):
 
 		db.session.commit()
 
-		employee = Users.query.filter_by(user_id=2)
+		employee = Users.query.filter_by(user.id=2)
 
 		self.assertNotEqual(employee.first_name, "test")
 		self.assertNotEqual(employee.last_name, "user")
