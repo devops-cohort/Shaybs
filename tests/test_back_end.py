@@ -182,7 +182,7 @@ class TestDelete(TestBase):
 # 		db.session.commit()
 # 		self.assertEqual(Role.query.count(), 1)
 
-class Login(TestBase):
+class TestLogin(TestBase):
 
     # Ensure that main page requires user login
 	def test_book_route_requires_login(self):
@@ -195,14 +195,14 @@ class Login(TestBase):
 		self.assertIn(b"Home Page", response.data)
 
 
-	def login(self, email, password):
+	def test_login(self, email, password):
 		return self.client.post(
 			url_for('login'),
 			data=dict(email=email, password=password),
 			follow_redirects=True
 			)
 
-	def logout(self):
+	def test_logout(self):
 		return self.client.get(url_for('logout'), follow_redirects=True)
 
 if __name__ == '__main__':
