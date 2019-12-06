@@ -122,7 +122,7 @@ class TestUpdateDelete(TestBase):
 
 		db.session.commit()
 
-		employee = Users.query.filter_by(id=2)
+		book = Books.query.filter_by(id=2)
 
 		self.assertNotEqual(book[0].book, "Zero To One")
 		self.assertNotEqual(book[0].author, "Peter Thiel")
@@ -138,7 +138,7 @@ class TestUpdateDelete(TestBase):
 		review[0].rating = "4"
 		db.session.commit()
 
-		review = Users.query.filter_by(id=2)
+		review = Reviews.query.filter_by(id=2)
 
 		self.assertNotEqual(review[0].review_author, "Zero To One")
 		self.assertNotEqual(review[0].review, "Peter Thiel")
