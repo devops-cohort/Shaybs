@@ -84,3 +84,22 @@ class TestViews(TestBase):
 	def  test_logout_view(self):
 		response = self.client.get(url_for('logout'))
 		self.assertEqual(response.status_code, 302)
+
+class TestUpdateDelete(TestBase):
+
+	def test_update_account(self):
+
+		employee = Users.query.filter_by(user_id=2)
+
+		employee.first_name = "NotTest"
+		employee.last_name = "NotUser"
+		employee.email = "NotTest@NotUser.com"
+
+		db.session.commit()
+
+		employee = Users.query.filter_by(user_id=2)
+
+		self.assertNotEqual(employee.first_name = "test")
+		self.assertNotEqual(employee.first_name = "user")
+		self.assertNotEqual(employee.first_name = "test@user.com")
+
