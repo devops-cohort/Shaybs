@@ -195,7 +195,7 @@ class TestLogin(TestBase):
 		self.assertIn(b"Home Page", response.data)
 
 
-	def test_login(self, email, password):
+	def test_login(self, admin.email, admin.password):
 		return self.client.post(
 			url_for('login'),
 			data=dict(email=email, password=password),
