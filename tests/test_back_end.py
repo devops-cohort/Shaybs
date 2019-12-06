@@ -164,7 +164,23 @@ class TestDelete(TestBase):
 		self.assertNotEqual(review[0].rating, "5")
 
 
-#	def test_update_review(self):
+#Test the models
+class ModelTests(TestBase):
+	#
+	def test_employee_model(self):
+		self.assertEqual(Employee.query.count(), 2)
+
+	def test_role_model(self):
+		role = Role(name="CEO", description="Run the whole company")
+		db.session.add(role)
+		db.session.commit()
+		self.assertEqual(Role.query.count(), 1)
+
+	def test_role_model(self):
+		role = Role(name="CEO", description="Run the whole company")
+		db.session.add(role)
+		db.session.commit()
+		self.assertEqual(Role.query.count(), 1)
 
 class Login(TestBase):
 
@@ -178,34 +194,16 @@ class Login(TestBase):
 		response = self.client.get(url_for('home'), follow_redirects=True)
 		self.assertIn(b"Home Page", response.data)
 
-    # Ensure that posts show up on the main page
-	#def test_login_page(self):
-		#Users.create(first_name='admin', last_name='admin', email='joe@joes.com', password='12345')
 
-	#	response = self.client.post(
-	#		url_for('login'),
-	#		data={'email':'admin@admin.com', 'password':'admin2016'},
-			#follow_redirects=True
-	#	)
-	#	self.assert_redirects(response, url_for('home'))
-		#self.assertIn(b"Home Page", response.data)
-	#def test_login_page(self):
-	#	joe = Users(first_name='Joe', last_name='Joe', email='joe@joes.com', password='12345')
-	#	db.session.add(joe)
-	###		data={'email': 'joe@joes.com', 'password': '12345'}
-	#	)
-	#	self.assert_redirects(response, url_for('home'))
+def login(self, email, password):
+    return self.client.post(
+        url_for('login'),
+        data=dict(email=email, password=password),
+        follow_redirects=True
+    )
 
-
-	def login(client, email, password):
-		return client.post(url_for('login'), data=dict(
-			email=email,
-			password=password
-			),
-		follow_redirects=True)
-
-	def logout(client):
-		return client.get(url_for('logout'), follow_redirects=True)
+	def logout(self):
+		return self.client.get(url_for('logout'), follow_redirects=True)
 
 if __name__ == '__main__':
 	unittest.main()
