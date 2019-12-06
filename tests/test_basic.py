@@ -1,23 +1,24 @@
-    # Ensure that Flask was set up correctly
-    def test_index(self):
-        response = self.client.get('/login', content_type='html/text')
-        self.assertEqual(response.status_code, 200)
+    import unittest
+    from test_back_end import TestBase
+
+
+
 
     # Ensure that main page requires user login
-    def test_main_route_requires_login(self):
+    def test_book_route_requires_login(self):
         response = self.client.get('/', follow_redirects=True)
-        self.assertIn(b'Please log in to access this page', response.data)
+        self.assertIn(b'Login', response.data)
 
     # Ensure that welcome page loads
     def test_welcome_route_works_as_expected(self):
-        response = self.client.get('/welcome', follow_redirects=True)
-        self.assertIn(b'Welcome to Flask!', response.data)
+        response = self.client.get('/Home', follow_redirects=True)
+        self.assertIn(b'Home Page!', response.data)
 
     # Ensure that posts show up on the main page
     def test_posts_show_up_on_main_page(self):
         response = self.client.post(
             '/login',
-            data=dict(username="admin", password="admin"),
+            data=dict(email="admin@admin.com", password="admin2016"),
             follow_redirects=True
         )
-        self.assertIn(b'This is a test. Only a test.', response.data)
+        self.assertIn(b"Welcome to Shuaib's Book Web Application!", response.data)
