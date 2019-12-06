@@ -184,7 +184,7 @@ class Login(TestBase):
 			data=dict(email="admin@admin.com", password="admin2016"),
 			follow_redirects=True
 		)
-		self.assertIn(b"", response.data)
+		self.assertIn(b"Home Page", response.data)
 
 if __name__ == '__main__':
 	unittest.main()
