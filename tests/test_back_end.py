@@ -184,14 +184,13 @@ class ModelTests(TestBase):
 		self.assertEqual(Reviews.query.count(), 3)
 
 	def test_users_delete_model(self):
-		k = Users.query.filter_by(id=3)
+		Users.query.filter(User.id == 1).delete()
 		db.session.delete(k)
 		db.session.commit()
 		self.assertEqual(Users.query.count(), 2)
 
 	def test_reviews_delete_model(self):
-		dmytroReview = Reviews.query.filter_by(id=3)
-		db.session.delete(dmytroReview)
+		Reviews.query.filter(User.id == 1).delete()
 		db.session.commit()
 		self.assertEqual(Reviews.query.count(), 2)
 
