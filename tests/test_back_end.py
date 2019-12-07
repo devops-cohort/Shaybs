@@ -164,23 +164,28 @@ class TestDelete(TestBase):
 		self.assertNotEqual(review[0].rating, "5")
 
 
-#Test the models
-# class ModelTests(TestBase):
-# 	#
-# 	def test_employee_model(self):
-# 		self.assertEqual(Employee.query.count(), 2)
+Test the models
+class ModelTests(TestBase):
+	
+	def test_users_model(self):
+		piers = Users(first_name="piers", last_name="gilbert", email="piers@email.com", password="unknown")
+		db.session.add(piers)
+		db.session.commit()
+		self.assertEqual(Users.query.count(), 3)
 
-# 	def test_role_model(self):
-# 		role = Role(name="CEO", description="Run the whole company")
-# 		db.session.add(role)
-# 		db.session.commit()
-# 		self.assertEqual(Role.query.count(), 1)
+	def test_books_model(self):
+		effectiveExecutive = Books(book="The Effective Executive", author="Peter Drucker", description="A book about business", rating="5")
+		db.session.add(effectiveExecutive)
+		db.session.commit()
+		self.assertEqual(Books.query.count(), 3)
 
-# 	def test_role_model(self):
-# 		role = Role(name="CEO", description="Run the whole company")
-# 		db.session.add(role)
-# 		db.session.commit()
-# 		self.assertEqual(Role.query.count(), 1)
+	def test_reviews_model(self):
+		dmytroReview = Reviews(review_author="Dmytro", review="Interesting book", rating="5", book_id="1")
+		db.session.add(dmytroReview)
+		db.session.commit()
+		self.assertEqual(Reviews.query.count(), 3)
+
+
 
 class TestLogin(TestBase):
     # Ensure that main page requires user login
@@ -202,7 +207,6 @@ class TestLogin(TestBase):
 		)
 		self.assertIn(b'', response.data)
 		self.assertEqual(response.status_code, 200)
-		self.assertEqual(response.status_code, 302)
 
 	def test_logout(self):
 		return self.client.get(url_for('logout'), follow_redirects=True)
