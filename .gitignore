@@ -1,7 +1,10 @@
 /.coverage
 /ignore/*
 /application/__init__.pyc
-/application/__pycache__/*
+/application/__pycache__/
+/application/static/346199.jpg
+/application/static/book.png
+/application/static/intro-bg.jpg
 /htmlcov/
 /__pycache__/
 /.pytest_cache/
