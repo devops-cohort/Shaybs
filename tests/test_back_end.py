@@ -163,8 +163,6 @@ class TestDelete(TestBase):
 		self.assertNotEqual(review[0].review, "Interesting book")
 		self.assertNotEqual(review[0].rating, "5")
 
-
-Test the models
 class ModelTests(TestBase):
 	
 	def test_users_model(self):
