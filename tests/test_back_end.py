@@ -2,7 +2,7 @@ import unittest
 
 from flask import abort, url_for
 from flask_testing import TestCase
-from os import getenv
+import os
 from application import app, db
 from application.models import Users, Books, Reviews
 from flask_login import login_user, current_user, logout_user, login_required
