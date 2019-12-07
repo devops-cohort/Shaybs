@@ -196,14 +196,14 @@ class TestLogin(TestBase):
 	def test_register(self, first_name, last_name, email, password, confirm_password):
 		return self.client.post(
 			url_for('register'),
-			data=dict(first_name=first_name, last_name=last_name, email=email, password=password, confirm_password=confirm_password),
+			data=dict(first_name="first_name", last_name="last_name", email="email@email.com", password="password", confirm_password="password"),
 			follow_redirects=True
 		)
 
 	def test_login(self, email, password):
 		return self.client.post(
 			url_for('login'),
-			data=dict(email="admin@admin.com", password="admin2016"),
+			data=dict(email=email, password=password),
 			follow_redirects=True
 			)
 
