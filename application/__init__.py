@@ -7,7 +7,7 @@ from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://"+os.getenv("USERNAME")+":"+os.getenv("PASSWORD")+"@35.197.196.36/"+os.getenv("MYSQL_DB")
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://"+os.getenv("USERNAME")+":"+os.getenv("PASSWORD")+"@"+os.getenv("MYSQL_URL")+"/"+os.getenv("MYSQL_DB")
 app.config['SECRET_KEY'] = 'hjd9848rujjuuIJDF84UjyeKMCD938JUudK'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
