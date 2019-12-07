@@ -201,9 +201,6 @@ class TestLogin(TestBase):
 			follow_redirects=True
 		)
 		self.assertIn(b'', response.data)
-
-	def  test_home_view(self):
-		response = self.client.get(url_for('home'))
 		self.assertEqual(response.status_code, 200)
 
 	def test_logout(self):
