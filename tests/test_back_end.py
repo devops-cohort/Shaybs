@@ -193,6 +193,12 @@ class TestLogin(TestBase):
 		response = self.client.get(url_for('home'), follow_redirects=True)
 		self.assertIn(b"Home Page", response.data)
 
+	def register(self, email, password, confirm):
+		return self.app.post(
+			'/register',
+			data=dict(email=email, password=password, confirm=confirm),
+			follow_redirects=True
+		)
 
 	def test_login(self, email, password):
 		return self.client.post(
