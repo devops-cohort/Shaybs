@@ -210,6 +210,18 @@ class TestLogin(TestBase):
 		response = self.client.get(url_for('books'), follow_redirects=True)
 		self.assertIn(b'Login', response.data)
 
+	def test_add_book_route_requires_login(self):
+		response = self.client.get(url_for('add_book'), follow_redirects=True)
+		self.assertIn(b'Login', response.data)
+
+	def test_edit_books_route_requires_login(self):
+		response = self.client.get(url_for('edit_books/2'), follow_redirects=True)
+		self.assertIn(b'Login', response.data)
+
+	def test_delete_review_route_requires_login(self):
+		response = self.client.get(url_for('delete_books/2'), follow_redirects=True)
+		self.assertIn(b'Login', response.data)
+
 	# Ensure that reviews page requires user login
 	def test_reviews_route_requires_login(self):
 		response = self.client.get(url_for('reviews'), follow_redirects=True)
@@ -221,11 +233,15 @@ class TestLogin(TestBase):
 		self.assertIn(b'Login', response.data)
 
 	def test_edit_review_route_requires_login(self):
-		response = self.client.get(url_for('edit_review'), follow_redirects=True)
+		response = self.client.get(url_for('edit_review/2'), follow_redirects=True)
 		self.assertIn(b'Login', response.data)
 
 	def test_delete_review_route_requires_login(self):
-		response = self.client.get(url_for('delete_review'), follow_redirects=True)
+		response = self.client.get(url_for('delete_review/2'), follow_redirects=True)
+		self.assertIn(b'Login', response.data)
+
+	def test_account_route_requires_login(self):
+		response = self.client.get(url_for('account'), follow_redirects=True)
 		self.assertIn(b'Login', response.data)
 
 	def test_login(self):
