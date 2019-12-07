@@ -184,19 +184,13 @@ class ModelTests(TestBase):
 		self.assertEqual(Reviews.query.count(), 3)
 
 	def test_users_delete_model(self):
-		piers = Users.query.get_or_404(id=3)
-		db.session.delete(piers)
+		k = Users.query.get_or_404(3)
+		db.session.delete(k)
 		db.session.commit()
 		self.assertEqual(Users.query.count(), 2)
 
-	def test_books_delete_model(self):
-		effectiveExecutive = Reviews.query.get_or_404(id=3)
-		db.session.delete(effectiveExecutive)
-		db.session.commit()
-		self.assertEqual(Books.query.count(), 2)
-
 	def test_reviews_delete_model(self):
-		dmytroReview = Reviews.query.get_or_404(id=3)
+		dmytroReview = Reviews.query.get_or_404(3)
 		db.session.delete(dmytroReview)
 		db.session.commit()
 		self.assertEqual(Reviews.query.count(), 2)
