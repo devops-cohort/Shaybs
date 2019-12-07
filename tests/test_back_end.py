@@ -194,9 +194,11 @@ class TestLogin(TestBase):
 		self.assertIn(b"Home Page", response.data)
 
 	def test_register(self, first_name, last_name, email, password, confirm_password):
+		employee = Users.query.filter_by(id=2)
+
 		return self.client.post(
 			url_for('register'),
-			data=dict(first_name="first_name", last_name="last_name", email="email@email.com", password="password", confirm_password="password"),
+			data=dict(first_name=employee[0].first_name, last_name="last_name", email="email@email.com", password="password", confirm_password="password"),
 			follow_redirects=True
 		)
 
