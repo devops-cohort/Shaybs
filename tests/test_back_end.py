@@ -232,6 +232,15 @@ class TestLogin(TestBase):
 		self.assertIn(b'', response.data)
 		self.assertEqual(response.status_code, 200)
 
+	def test_login(self):
+		response = self.client.post(
+			url_for('login'),
+			data=dict(first_name="test", last_name="anothername", email="newadmin@admin.com", password="unknown"),
+			follow_redirects=True
+		)
+		self.assertIn(b'', response.data)
+		self.assertEqual(response.status_code, 200)
+
 	def test_logout(self):
 		return self.client.get(url_for('logout'), follow_redirects=True)
 
