@@ -15,8 +15,7 @@ class TestBase(TestCase):
 		#Passes in test configurations
 		config_name = 'testing'
 		app.config.update(
-			SQLALCHEMY_DATABASE_URI='mysql+pymysql://'+str(getenv('USERNAME'))+':'+str(getenv('PASSWORD'))+'@35.197.196.36/bookapp_backup'
-		)
+		app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://"+os.getenv("USERNAME")+":"+os.getenv("PASSWORD")+"@"+os.getenv("MYSQL_URL")+"/"+os.getenv("MYSQL_DB_TEST")
 		return app
 
 	def setUp(self):
