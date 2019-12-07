@@ -101,6 +101,18 @@ class TestFrontEnd(TestBase):
 		response = self.client.get(url_for('home'))
 		self.assertIn(b"Home Page", response.data)
 
+	def test_about_route_works_as_expected(self):
+		response = self.client.get(url_for('about'))
+		self.assertIn(b"Home Page", response.data)
+
+	def test_register_route_works_as_expected(self):
+		response = self.client.get(url_for('register'))
+		self.assertIn(b"Home Page", response.data)
+
+	def test_login_route_works_as_expected(self):
+		response = self.client.get(url_for(''))
+		self.assertIn(b"Home Page", response.data)
+
 class TestUpdate(TestBase):
 
 	def test_update_account(self):
@@ -137,23 +149,6 @@ class TestUpdate(TestBase):
 		self.assertNotEqual(book[0].description, "It stipulates business theory")
 		self.assertNotEqual(book[0].rating, "5")
 
-	def test_update_review(self):
-
-		review = Reviews.query.filter_by(id=2)
-
-		review[0].review_author = "Not Thomas"
-		review[0].review = "Worst book ever"
-		review[0].rating = "1"
-		db.session.commit()
-
-		review = Reviews.query.filter_by(id=2)
-
-		self.assertNotEqual(review[0].review_author, "Thomas")
-		self.assertNotEqual(review[0].review, "Interesting book")
-		self.assertNotEqual(review[0].rating, "5")
-
-
-class TestDelete(TestBase):
 	def test_update_review(self):
 
 		review = Reviews.query.filter_by(id=2)
@@ -214,10 +209,6 @@ class TestLogin(TestBase):
 		response = self.client.get(url_for('add_book'), follow_redirects=True)
 		self.assertIn(b'Login', response.data)
 
-	def test_edit_books_route_requires_login(self):
-		response = self.client.get(url_for('edit_books/2'), follow_redirects=True)
-		self.assertIn(b'Login', response.data)
-
 	def test_delete_review_route_requires_login(self):
 		response = self.client.get(url_for('delete_books/2'), follow_redirects=True)
 		self.assertIn(b'Login', response.data)
@@ -230,14 +221,6 @@ class TestLogin(TestBase):
 		# Ensure that reviews page requires user login
 	def test_add_review_route_requires_login(self):
 		response = self.client.get(url_for('add_review'), follow_redirects=True)
-		self.assertIn(b'Login', response.data)
-
-	def test_edit_review_route_requires_login(self):
-		response = self.client.get(url_for('edit_review/2'), follow_redirects=True)
-		self.assertIn(b'Login', response.data)
-
-	def test_delete_review_route_requires_login(self):
-		response = self.client.get(url_for('delete_review/2'), follow_redirects=True)
 		self.assertIn(b'Login', response.data)
 
 	def test_account_route_requires_login(self):
