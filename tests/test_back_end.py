@@ -27,7 +27,7 @@ class TestBase(TestCase):
 		db.create_all()
 
 		#Create test admin user
-		admin = Users(first_name="admin", last_name="admin", email="admin@admin.com", password="admin2016")
+		admin = Users(first_name="admin", last_name="admin", email="admin@admin.com", password="admin")
 		employee = Users(first_name="test", last_name="user", email="test@user.com", password="test2016")
 		BenjaminFranklin = Books(book="An American Life: Benjamin Franklin", author="Walter Isaacson", description="It is a biography of Benjamin Franklin", rating="5")
 		ZeroToOne = Books(book="Zero To One", author="Peter Thiel", description="It stipulates business theory", rating="5")
@@ -193,21 +193,18 @@ class TestLogin(TestBase):
 		response = self.client.get(url_for('home'), follow_redirects=True)
 		self.assertIn(b"Home Page", response.data)
 
-	def test_register(self, first_name, last_name, email, password, confirm_password):
-		employee = Users.query.filter_by(id=2)
 
-		return self.client.post(
-			url_for('register'),
-			data=dict(first_name=employee[0].first_name, last_name="last_name", email="email@email.com", password="password", confirm_password="password"),
+	def test_login(self):
+		response = self.client.post(
+			url_for('login'),
+			data=dict(email="admin@admin.com", password="admin"),
 			follow_redirects=True
 		)
+		self.assertIn(b'', response.data)
 
-	def test_login(self, email, password):
-		return self.client.post(
-			url_for('login'),
-			data=dict(email=email, password=password),
-			follow_redirects=True
-			)
+	def  test_home_view(self):
+		response = self.client.get(url_for('home'))
+		self.assertEqual(response.status_code, 200)
 
 	def test_logout(self):
 		return self.client.get(url_for('logout'), follow_redirects=True)
