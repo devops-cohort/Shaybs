@@ -95,6 +95,12 @@ class TestViews(TestBase):
 		response = self.client.get(url_for('logout'))
 		self.assertEqual(response.status_code, 302)
 
+class TestFrontEnd(TestBase):
+    # Ensure that welcome page loads
+	def test_home_route_works_as_expected(self):
+		response = self.client.get(url_for('home'))
+		self.assertIn(b"Home Page", response.data)
+
 class TestUpdate(TestBase):
 
 	def test_update_account(self):
@@ -199,16 +205,28 @@ class ModelTests(TestBase):
 		self.assertEqual(Books.query.count(), 1)
 
 class TestLogin(TestBase):
-    # Ensure that main page requires user login
+	# Ensure that books page requires user login
 	def test_book_route_requires_login(self):
 		response = self.client.get(url_for('books'), follow_redirects=True)
 		self.assertIn(b'Login', response.data)
 
-    # Ensure that welcome page loads
-	def test_home_route_works_as_expected(self):
-		response = self.client.get(url_for('home'), follow_redirects=True)
-		self.assertIn(b"Home Page", response.data)
+	# Ensure that reviews page requires user login
+	def test_reviews_route_requires_login(self):
+		response = self.client.get(url_for('reviews'), follow_redirects=True)
+		self.assertIn(b'Login', response.data)
 
+		# Ensure that reviews page requires user login
+	def test_add_review_route_requires_login(self):
+		response = self.client.get(url_for('add_review'), follow_redirects=True)
+		self.assertIn(b'Login', response.data)
+
+	def test_edit_review_route_requires_login(self):
+		response = self.client.get(url_for('edit_review'), follow_redirects=True)
+		self.assertIn(b'Login', response.data)
+
+	def test_delete_review_route_requires_login(self):
+		response = self.client.get(url_for('delete_review'), follow_redirects=True)
+		self.assertIn(b'Login', response.data)
 
 	def test_login(self):
 		response = self.client.post(
