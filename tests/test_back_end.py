@@ -183,9 +183,6 @@ class TestDelete(TestBase):
 # 		self.assertEqual(Role.query.count(), 1)
 
 class TestLogin(TestBase):
-	employee = Users.query.filter_by(id=2)
-	email = employee[0].email
-	password = employee[0].password
     # Ensure that main page requires user login
 	def test_book_route_requires_login(self):
 		response = self.client.get(url_for('books'), follow_redirects=True)
@@ -200,7 +197,7 @@ class TestLogin(TestBase):
 	def test_login(self, email, password):
 		return self.client.post(
 			url_for('login'),
-			data=dict(email=email, password=password),
+			data=dict(email="admin@admin.com", password="admin2016"),
 			follow_redirects=True
 			)
 
