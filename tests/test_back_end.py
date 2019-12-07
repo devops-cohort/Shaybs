@@ -193,7 +193,7 @@ class ModelTests(TestBase):
 		db.session.commit()
 		self.assertEqual(Reviews.query.count(), 1)
 
-	def test_reviews_delete_model(self):
+	def test_books_delete_model(self):
 		Books.query.filter(Reviews.id == 1).delete()
 		db.session.commit()
 		self.assertEqual(Books.query.count(), 1)
