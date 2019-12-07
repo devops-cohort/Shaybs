@@ -103,15 +103,15 @@ class TestFrontEnd(TestBase):
 
 	def test_about_route_works_as_expected(self):
 		response = self.client.get(url_for('about'))
-		self.assertIn(b"Home Page", response.data)
+		self.assertIn(b"About", response.data)
 
 	def test_register_route_works_as_expected(self):
 		response = self.client.get(url_for('register'))
-		self.assertIn(b"Home Page", response.data)
+		self.assertIn(b"Register for an account", response.data)
 
 	def test_login_route_works_as_expected(self):
 		response = self.client.get(url_for(''))
-		self.assertIn(b"Home Page", response.data)
+		self.assertIn(b"Login", response.data)
 
 class TestUpdate(TestBase):
 
@@ -207,10 +207,6 @@ class TestLogin(TestBase):
 
 	def test_add_book_route_requires_login(self):
 		response = self.client.get(url_for('add_book'), follow_redirects=True)
-		self.assertIn(b'Login', response.data)
-
-	def test_delete_review_route_requires_login(self):
-		response = self.client.get(url_for('delete_books/2'), follow_redirects=True)
 		self.assertIn(b'Login', response.data)
 
 	# Ensure that reviews page requires user login
