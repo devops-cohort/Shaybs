@@ -110,7 +110,7 @@ class TestFrontEnd(TestBase):
 		self.assertIn(b"Register for an account", response.data)
 
 	def test_login_route_works_as_expected(self):
-		response = self.client.get(url_for(''))
+		response = self.client.get(url_for('login'))
 		self.assertIn(b"Login", response.data)
 
 class TestUpdate(TestBase):
