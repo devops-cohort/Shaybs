@@ -1,0 +1,10 @@
+/.coverage
+/ignore/*
+/application/__init__.pyc
+/htmlcov/
+/__pycache__/
+/.pytest_cache/
+/venv/
+/application/venv/*
+/Shaybs_assessment/*
+**/*.pyc
