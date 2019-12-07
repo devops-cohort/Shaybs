@@ -202,6 +202,7 @@ class TestLogin(TestBase):
 		)
 		self.assertIn(b'', response.data)
 		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.status_code, 302)
 
 	def test_logout(self):
 		return self.client.get(url_for('logout'), follow_redirects=True)
