@@ -185,14 +185,13 @@ class ModelTests(TestBase):
 
 	def test_users_delete_model(self):
 		Users.query.filter(Users.id == 1).delete()
-		db.session.delete(k)
 		db.session.commit()
-		self.assertEqual(Users.query.count(), 2)
+		self.assertEqual(Users.query.count(), 1)
 
 	def test_reviews_delete_model(self):
 		Reviews.query.filter(Reviews.id == 1).delete()
 		db.session.commit()
-		self.assertEqual(Reviews.query.count(), 2)
+		self.assertEqual(Reviews.query.count(), 1)
 
 
 class TestLogin(TestBase):
