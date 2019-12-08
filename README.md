@@ -85,12 +85,19 @@ The requirements for the project were traced using Trello. The Trello Sprint Boa
 
 A SQL database in GCP was spun up along with a VM for Jenkins and another for deployment. An Agile and Test Driven Approach was utilised, hence how to conduct tests was researched. Consideration of HTTP responses and the string responses within the HTML were made. A risk assessment was conducted and is shown below:
 
+![Risk Assessment](/Documents/RiskAssessment.png)
+
 A virtual environment was created, the program was written in a modular form and uploaded to branch on GitHub. This modular form enabled quick troubleshooting throughout the processes. As the software development progressed, the ERD was updated to the following:
+
+![Updated ERD](/Documents/RealERD-2.jpg)
 
 Minor changes were intentionally made to follow the KISS principle (Keep it Simple Stupid). Furthermore, CRUD functionality tests were also taken into account. such as CRUD functionality, login and registration. Front-end development was also considered and was added to the Sprint. During the Sprint phase more more test consideration were taken into account, In total over 30 tests were written and tested:
 
+![Test Log](/Documents/TestLog.png)
+
 This was followed by integration with between the deployment VMs and Jenkins resulting in the following pipeline:
 
+![CI Pipeline](/Documents/CIPipeline.jpg)
 
 There are many improvements that can be made to this application. For example, there could be more stringent policies for who could add a book and less stringent requirements for who can add a reviews. Other features such as search could be added as well. More tests including tests of how the application behaves after a user has logged in could be added. Security could also be enhanced through the addition of dummy data to passwords before hashing and through the randomisation of the dummy data to ensure there are no patterns for the dummy data. The user could also be displayed an image along side each book. Usernames could be attached to each review and improvements to the front end can be made by changing the colours and fonts to fit book genre.
 
@@ -98,45 +105,46 @@ There are many improvements that can be made to this application. For example, t
 
 LOGIN EPIC: USER STORY I:
 
-![this is an image](/Documents/)
-
+![Login Epic: User Story I](/Documents/LoginEpicUSI.jpg)
 
 LOGIN EPIC: USER STORY II:
 
-![this is an image](/Documents/)
+![Login Epic: User Story II](/Documents/LoginEpicUSII.jpg)
 
 LOGIN EPIC: USER STORY III:
 
-![this is an image](/Documents/)
+![Login Epic: User Story III](/Documents/LoginEpicUSIII.jpg)
 
 EPIC I: USER STORY I:
 
-![this is an image](/Documents/)
+![Epic I: User Story I](/Documents/EpicIUSI.jpg)
 
 EPIC I: USER STORY II:
 
-![this is an image](/Documents/)
+![Epic I: User Story II](/Documents/EpicIUSII.jpg)
 
 EPIC I: USER STORY III:
 
-![this is an image](/Documents/)
+![Epic I: User Story III](/Documents/EpicIUSIII.jpg)
 
 EPIC I: USER STORY IV:
 
-![this is an image](/Documents/)
+![Epic I: User Story IV](/Documents/EpicIUSIV.jpg)
 
 EPIC II: USER STORY I:
 
-![this is an image](/Documents/)
+![Epic II: User Story I](/Documents/EpicIIUSI.jpg)
 
 EPIC II: USER STORY II:
 
-![this is an image](/Documents/)
+![Epic II: User Story II](/Documents/EpicIIUSII.jpg)
 
 EPIC III: USER STORY III:
 
-![this is an image](/Documents/)
+![Epic II: User Story III](/Documents/EpicIIUSIII.jpg)
 
 ### APPENDIX II: PRODUCT BACKLOG EXAMPLE
+
+![Product Backlog](/Documents/ProductBacklog.png)
 
 
