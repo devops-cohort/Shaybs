@@ -32,6 +32,7 @@ The requirements have been listed below:
 
 
 The MoSCoW has been listed below:
+
 |  | MoSCoW |
 | ------ | ------ |
 | MUST | Have Unit tests for all web pages |
