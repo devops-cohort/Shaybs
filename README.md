@@ -117,31 +117,31 @@ LOGIN EPIC: USER STORY III:
 
 EPIC I: USER STORY I:
 
-![Epic I: User Story I](/Documents/EpicIUSI.jpg)
+![Epic I: User Story I](/Documents/EPICIUSI.jpg)
 
 EPIC I: USER STORY II:
 
-![Epic I: User Story II](/Documents/EpicIUSII.jpg)
+![Epic I: User Story II](/Documents/EPICIUSII.jpg)
 
 EPIC I: USER STORY III:
 
-![Epic I: User Story III](/Documents/EpicIUSIII.jpg)
+![Epic I: User Story III](/Documents/EPICIUSIII.jpg)
 
 EPIC I: USER STORY IV:
 
-![Epic I: User Story IV](/Documents/EpicIUSIV.jpg)
+![Epic I: User Story IV](/Documents/EPICIUSIV.jpg)
 
 EPIC II: USER STORY I:
 
-![Epic II: User Story I](/Documents/EpicIIUSI.jpg)
+![Epic II: User Story I](/Documents/EPICIIUSI.jpg)
 
 EPIC II: USER STORY II:
 
-![Epic II: User Story II](/Documents/EpicIIUSII.jpg)
+![Epic II: User Story II](/Documents/EPICIIUSII.jpg)
 
 EPIC III: USER STORY III:
 
-![Epic II: User Story III](/Documents/EpicIIUSIII.jpg)
+![Epic II: User Story III](/Documents/EPICIIUSIII.jpg)
 
 ### APPENDIX II: PRODUCT BACKLOG EXAMPLE
 
