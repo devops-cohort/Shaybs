@@ -61,26 +61,27 @@ Trello was utilised to create a plan. During this phase research was conducted o
 ![Trello Planning Board](/Documents/TrelloPlanningBoard.png)
 
 After completing this Initiatives, Themes Epics were researched which resulted in the following epics and user stories:
-![]()
+![First Epic](/Documents/EPICI.jpg)
+![Second and Third Epics](/Documents/EPICII&III.jpg)
+
 A user story, its process and use case from the Login Epic has been shown below:
-![this is an image](https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg)
+![A User Story and Use Case from the Login Epic](/Documents/LoginEpicUSI.jpg)
 
 A user story, its process and use case from the Reading Reviews epic has been shown below:
-![this is an image](https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg)
+![A User Story and Use Case from the second Epic](/Documents/EPICIUSI.jpg)
 
 A user story, its process and use case from the Books epic has been shown below:
-
-![this is an image](https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg)
+![A user story from the third Epic](/Documents/EPICIIUSI.jpg)
 
 An initial Entity Relationship Diagram was created as demonstrated below:
 
-![this is an image](https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg)
+![ERD](/Documents/RealERD.jpg)
 
 The source code was connected to GitHub, which allowed version control and the ability to switch between different versions. It also allowed the project to be pulled onto different machines; and the addition and testing of new features from different machines.
 
 The requirements for the project were traced using Trello. The Trello Sprint Board is shown below:
 
-![this is an image](https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg)
+![Trello Sprint Board](/Documents/TrelloSprintBoard.png)
 
 A SQL database in GCP was spun up along with a VM for Jenkins and another for deployment. An Agile and Test Driven Approach was utilised, hence how to conduct tests was researched. Consideration of HTTP responses and the string responses within the HTML were made. A risk assessment was conducted and is shown below:
 
@@ -95,26 +96,47 @@ There are many improvements that can be made to this application. For example, t
 
 ### APPENDIX I
 
-LOGIN EPIC: USER STORY I
+LOGIN EPIC: USER STORY I:
 
-LOGIN EPIC: USER STORY II
+![this is an image](/Documents/)
+
+
+LOGIN EPIC: USER STORY II:
+
+![this is an image](/Documents/)
 
 LOGIN EPIC: USER STORY III:
 
+![this is an image](/Documents/)
+
 EPIC I: USER STORY I:
+
+![this is an image](/Documents/)
 
 EPIC I: USER STORY II:
 
+![this is an image](/Documents/)
+
 EPIC I: USER STORY III:
+
+![this is an image](/Documents/)
 
 EPIC I: USER STORY IV:
 
+![this is an image](/Documents/)
+
 EPIC II: USER STORY I:
+
+![this is an image](/Documents/)
 
 EPIC II: USER STORY II:
 
+![this is an image](/Documents/)
+
 EPIC III: USER STORY III:
 
-APPENDIX II: PRODUCT BACKLOG EXAMPLE
+![this is an image](/Documents/)
+
+### APPENDIX II: PRODUCT BACKLOG EXAMPLE
 
 
