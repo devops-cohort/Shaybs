@@ -1,3 +1,4 @@
+/tests/.coverage
 /.coverage
 /ignore/*
 /application/__init__.pyc
