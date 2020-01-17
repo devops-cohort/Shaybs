@@ -172,6 +172,7 @@ class UploadForm(FlaskForm):
                         Length(min=1,max=30)
                 ]
         )
+        submit = SubmitField('Add Image')
 
 class UpdateAccountForm(FlaskForm):
         #Add the first name field and relevant data requirements
