@@ -7,9 +7,6 @@
     <h1>Register for an account</h1>
     <br/>
     {{ wtf.quick_form(form) }}
-    <form method=POST enctype=multipart/form-data action="upload_post">
-    {{ form.hidden_tag() }}
-	</form>
   </div>
 </div>				
 {% endblock body_content %}
