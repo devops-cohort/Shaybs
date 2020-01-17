@@ -219,6 +219,9 @@ def register():
         db.session.add(user)
         db.session.commit()
 
+        s3 = boto3.resource('s3')
+        s3.Bucket('webhosting-1').put_object(Key=request.files["image"].filename, Body=request.files["image"])
+
         flash('You have successfully registered! You can now login')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
@@ -233,7 +236,7 @@ def upload():
 @app.route('/upload_post', methods=['GET', 'POST'])
 def upload_post():
     s3 = boto3.resource('s3')
-    s3.Bucket('webhosting-1').put_object(Key=request.files["filename"], Body=request.files["image"])
+    s3.Bucket('webhosting-1').put_object(Key=request.files["image"].filename, Body=request.files["image"])
 
     return 'Filed saved'
 
