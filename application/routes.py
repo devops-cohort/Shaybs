@@ -228,13 +228,14 @@ def register():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    
-    #form = UploadForm
+    return render_template('upload.html')
 
+
+@app.route('/upload_post', methods=['GET', 'POST'])
+def upload_post():
+    #form = UploadForm
     s3 = boto3.resource('s3')
     s3.Bucket('webhosting-1').put_object(Key='file.jpg', Body=request.files['myfile'])
-
-    return render_template('upload.html')
 
 
 @app.route('/account', methods=['GET', 'POST'])
