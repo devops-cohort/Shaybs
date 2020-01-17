@@ -6,7 +6,6 @@ from application.models import Users, Books, Reviews
 from flask_login import current_user
 from flask_uploads import UploadSet, IMAGES
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-import boto3
 
 #Creates the Login form
 class LoginForm(FlaskForm):
@@ -128,13 +127,6 @@ class RegistrationForm(FlaskForm):
                 ]
         )
 
-        upload = FileField('image',
-                validators=[
-                        FileRequired(),
-                        FileAllowed(['jpg', 'png'], 'Images only')
-                ]
-        )
-
         #Add the password field and relevant data requirements
         password = PasswordField('Password',
                 validators=[
@@ -147,6 +139,13 @@ class RegistrationForm(FlaskForm):
                 validators=[
                         DataRequired(),
                         EqualTo('password')
+                ]
+        )
+        
+        upload = FileField('Profile Picture',
+                validators=[
+                        FileRequired(),
+                        FileAllowed(['jpg', 'png'], 'Images only')
                 ]
         )
         submit = SubmitField('Sign Up')
