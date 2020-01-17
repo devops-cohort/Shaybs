@@ -157,7 +157,7 @@ class RegistrationForm(FlaskForm):
                 if user:
                         raise ValidationError('Email is already in use!')
 
-class RegistrationForm(FlaskForm):
+class UploadForm(FlaskForm):
 
         image = FileField('Profile Picture',
                 validators=[
