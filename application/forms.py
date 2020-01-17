@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from wtforms import StringField, IntegerField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, FileField, IntegerField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from application.models import Users, Books, Reviews
 from flask_login import current_user
-from flask_wtf.file import FileField, FileAllowed, FileRequired
+from flask.ext.wtf.file import FileRequired, FileAllowed
 
 #Creates the Login form
 class LoginForm(FlaskForm):
@@ -141,7 +141,7 @@ class RegistrationForm(FlaskForm):
                 ]
         )
 
-        upload = FileField('Profile Picture',
+        image = FileField('Profile Picture',
                 validators=[
                         FileRequired(),
                         FileAllowed(['jpg'], 'Images only')
