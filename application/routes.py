@@ -219,8 +219,12 @@ def register():
         db.session.add(user)
         db.session.commit()
 
+        key_preamble = form.username.data
+        key_ending = request.files["image"].filename
+        key_full = key_preamble + '/' + key_ending
+
         s3 = boto3.resource('s3')
-        s3.Bucket('webhosting-1').put_object(Key=form.first_name.data, Body=request.files["image"])
+        s3.Bucket('webhosting-1').put_object(Key=key_full, Body=request.files["image"])
 
         flash('You have successfully registered! You can now login')
         return redirect(url_for('login'))
