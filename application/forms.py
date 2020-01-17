@@ -4,7 +4,6 @@ from wtforms import StringField, IntegerField, PasswordField, SubmitField, Boole
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from application.models import Users, Books, Reviews
 from flask_login import current_user
-from flask_uploads import UploadSet, IMAGES
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 #Creates the Login form
@@ -141,11 +140,11 @@ class RegistrationForm(FlaskForm):
                         EqualTo('password')
                 ]
         )
-        
+
         upload = FileField('Profile Picture',
                 validators=[
                         FileRequired(),
-                        FileAllowed(['jpg', 'png'], 'Images only')
+                        FileAllowed(['jpg'], 'Images only')
                 ]
         )
         submit = SubmitField('Sign Up')

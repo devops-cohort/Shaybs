@@ -4,6 +4,7 @@ from application import app, db, bcrypt, login_manager
 from application.models import Books, Users, Reviews
 from application.forms import Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm, ReviewForm
 from flask_login import login_user, current_user, logout_user, login_required
+from boto3
 
 #Render the home page
 @app.route('/')
@@ -200,25 +201,42 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-        if current_user.is_authenticated:
-                return redirect(url_for('home'))
-        
-        form = RegistrationForm()
-        if form.validate_on_submit():
-                hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 
-                user = Users(
-                        first_name=form.first_name.data,
-                        last_name=form.last_name.data,
-                        email=form.email.data,
-                        password=hashed_pw
-                )
-                
-                db.session.add(user)
-                db.session.commit()
-                flash('You have successfully registered! You can now login')
-                return redirect(url_for('login'))
-        return render_template('register.html', title='Register', form=form)
+        user = Users(
+                first_name=form.first_name.data,
+                last_name=form.last_name.data,
+                email=form.email.data,
+                password=hashed_pw
+        )
+        
+        db.session.add(user)
+        db.session.commit()
+        
+        s3 = boto3.resource('s3')
+        s3.Bucket('webhosting-1').put_object(Key='image.jpg', Body=request.files[''])
+        flash('You have successfully registered! You can now login')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if form.validate_on_submit():
+        f = form.photo.data
+        filename = secure_filename(f.filename)
+        f.save(os.path.join(
+            app.instance_path, 'photos', filename
+        ))
+        return redirect(url_for('index'))
+
+    return render_template('upload.html', form=form)
+
 
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
