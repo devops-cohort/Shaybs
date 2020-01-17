@@ -233,7 +233,7 @@ def upload():
 @app.route('/upload_post', methods=['GET', 'POST'])
 def upload_post():
     s3 = boto3.resource('s3')
-    s3.Bucket('webhosting-1').put_object(Key='newfile.jpg', Body=request.files["image"])
+    s3.Bucket('webhosting-1').put_object(Key=request.files["image"].filename, Body=request.files["image"])
 
     return 'Filed saved'
 
