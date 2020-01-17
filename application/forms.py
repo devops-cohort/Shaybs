@@ -166,6 +166,13 @@ class UploadForm(FlaskForm):
                 ]
         )
 
+        filename = StringField('Filename',
+                validators=[
+                        DataRequired(),
+                        Length(min=1,max=30)
+                ]
+        )
+
 class UpdateAccountForm(FlaskForm):
         #Add the first name field and relevant data requirements
         first_name = StringField('First Name',

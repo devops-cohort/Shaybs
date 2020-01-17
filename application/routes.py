@@ -2,7 +2,7 @@
 from flask import abort, render_template, redirect, url_for, request, flash
 from application import app, db, bcrypt, login_manager
 from application.models import Books, Users, Reviews
-from application.forms import Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm, ReviewForm
+from application.forms import Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm, ReviewForm, UploadForm
 from flask_login import login_user, current_user, logout_user, login_required
 import boto3
 
@@ -226,7 +226,8 @@ def register():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    return render_template('upload.html')
+    form = UploadForm()
+    return render_template('upload.html', form=form)
 
 
 @app.route('/upload_post', methods=['GET', 'POST'])
