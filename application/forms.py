@@ -4,6 +4,9 @@ from wtforms import StringField, IntegerField, PasswordField, SubmitField, Boole
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from application.models import Users, Books, Reviews
 from flask_login import current_user
+from flask_uploads import UploadSet, IMAGES
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+import boto3
 
 #Creates the Login form
 class LoginForm(FlaskForm):
@@ -109,11 +112,26 @@ class RegistrationForm(FlaskForm):
                 ]
         )
 
+        #Add the last field and relevant data requirements
+        username = StringField('Username',
+                validators=[
+                        DataRequired(),
+                        Length(min=1,max=30)
+                ]
+        )
+
         #Add the email field and relevant data requirements
         email = StringField('Email',
                 validators=[
                         DataRequired(),
                         Email()
+                ]
+        )
+
+        upload = FileField('image',
+                validators=[
+                        FileRequired(),
+                        FileAllowed(['jpg', 'png'], 'Images only')
                 ]
         )
 
