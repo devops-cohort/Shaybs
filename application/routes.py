@@ -4,7 +4,7 @@ from application import app, db, bcrypt, login_manager
 from application.models import Books, Users, Reviews
 from application.forms import Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm, ReviewForm
 from flask_login import login_user, current_user, logout_user, login_required
-from boto3
+import boto3
 
 #Render the home page
 @app.route('/')
