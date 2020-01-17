@@ -147,6 +147,7 @@ class RegistrationForm(FlaskForm):
                         FileAllowed(['jpg'], 'Images only')
                 ]
         )
+
         submit = SubmitField('Sign Up')
 
         #Check whether the email is already in use, if it is do not allow the user to sign up
@@ -155,6 +156,15 @@ class RegistrationForm(FlaskForm):
 
                 if user:
                         raise ValidationError('Email is already in use!')
+
+class RegistrationForm(FlaskForm):
+
+        image = FileField('Profile Picture',
+                validators=[
+                        FileRequired(),
+                        FileAllowed(['jpg'], 'Images only')
+                ]
+        )
 
 class UpdateAccountForm(FlaskForm):
         #Add the first name field and relevant data requirements

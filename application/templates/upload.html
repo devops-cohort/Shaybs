@@ -1,0 +1,14 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+{% block body_content %}
+<div class="content-section">
+  <div class="center">
+    <h1>Upload a file to S3 Bucket</h1>
+        <form enctype=multipart/form-data action="upload">
+            <input type=file name=myfile>
+            <input type=submit>
+        </form>
+  </div>
+</div>              
+{% endblock body_content %}

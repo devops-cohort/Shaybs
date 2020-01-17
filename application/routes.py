@@ -219,8 +219,8 @@ def register():
         db.session.add(user)
         db.session.commit()
         
-        s3 = boto3.resource('s3')
-        s3.Bucket('webhosting-1').put_object(Key='image.jpg', Body=request.files[''])
+
+
         flash('You have successfully registered! You can now login')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
@@ -228,13 +228,11 @@ def register():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
-    if form.validate_on_submit():
-        f = form.photo.data
-        filename = secure_filename(f.filename)
-        f.save(os.path.join(
-            app.instance_path, 'photos', filename
-        ))
-        return redirect(url_for('index'))
+    
+    #form = UploadForm
+
+    s3 = boto3.resource('s3')
+    s3.Bucket('webhosting-1').put_object(Key='file.jpg', Body=request.files['myfile'])
 
     return render_template('upload.html', form=form)
 
