@@ -1,10 +1,7 @@
 version: "3.7"
 services:
   frontend-service:
-  # image: jenkins-ansible:5000/frontend:${BUILD_NUMBER}
-    image: ansible-jenkins:5000/frontend:${BUILD_NUMBER}
-    deploy:
-      replicas: 2
+    image: frontend
     container_name: frontend
     build: FrontEnd/
     environment:
@@ -14,3 +11,16 @@ services:
     - MYSQL_DB=${MYSQL_DB}
     - MYSQL_DB_TEST=${MYSQL_DB_TEST}
     - SECRET_KEY=${SECRET_KEY}
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+    - target: 80
+      published: 80
+    volumes:
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf
+    depends_on:
+      - frontend-service
