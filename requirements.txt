@@ -14,3 +14,4 @@ gunicorn==20.0.4
 flask-testing==0.7.1
 pytest-cov==2.8.1  
 pytest-html==1.22.1 
+eventlet==0.25.1
