@@ -1,38 +1,40 @@
+#Import all the relevant libraries and functions
 from flask import abort, render_template, redirect, url_for, request, flash
 from application import app, db, bcrypt, login_manager
 from application.models import Books, Users, Reviews
 from application.forms import Book_PostForm, RegistrationForm, UpdateAccountForm, LoginForm, ReviewForm
 from flask_login import login_user, current_user, logout_user, login_required
 
+#Render the home page
 @app.route('/')
 @app.route('/home')
 def home():
 	return render_template('home.html', title='Home')
 
+#Render the about page
 @app.route('/about')
 def about():
 	return render_template('about.html', title='About')
 
-#@app.route('/books')
-#def books():
-#	return render_template('books.html', title='Books')
-
+#Renders the books page
 @app.route('/books', methods=['GET', 'POST'])
 @login_required
 def books():
     #List all books
-
     books = Books.query.all()
-
     return render_template('books.html', title='Books', books=books)
 
-
+#Render the books page
 @app.route('/books/add', methods=['GET', 'POST'])
 @login_required
 def add_book():
 
+    #Add a vairable that changes the output of the book page
+    #If it is true it is for adding a book
+    #If it is false it for editing a book
     add_book = True
 
+    #Add a form
     form = Book_PostForm()
     if form.validate_on_submit():
         book = Books(
@@ -41,6 +43,8 @@ def add_book():
         description=form.description.data,
         rating=form.rating.data
         )
+        #Add the information if it is a new book
+        #Returns to the book page if the addition is successful
         try:
             db.session.add(book)
             db.session.commit()

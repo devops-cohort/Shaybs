@@ -39,6 +39,20 @@ pipeline{
                 '''
 			}
 		}
+		stage("Test") {
+			steps{
+				sh '''ssh 35.242.162.81  << "BOB"
+				cd Shaybs
+				git checkout development-test
+				install_dir=/opt/flask-app
+                sudo chown -R pythonadm:pythonadm ${install_dir}
+                sudo su - pythonadm << EOF
+                cd ${install_dir}
+                source venv/bin/activate
+                pytest --cov=application . --cov-report=html
+				'''
+			}
+		}
 		stage("Deploy") {
 			steps{
 				sh '''ssh 35.242.162.81  << "BOB"
