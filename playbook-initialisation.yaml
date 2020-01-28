@@ -1,0 +1,180 @@
+- hosts: all
+  become: true
+  tasks:
+  - name: Create Jenkins users
+    user:
+      name: jenkins
+      shell: /bin/bash
+
+- hosts: jenkins
+  become: true
+  tasks:
+  - name: "ssh folder"
+    file:
+      path: /home/jenkins/.ssh
+      state: directory
+      mode: "0700"
+      owner: jenkins
+      group: jenkins
+  - name: "Copy private key to jenkins"
+    copy:
+      src: /home/qa-admin/ansible/jenkins_id_rsa
+      dest: /home/jenkins/.ssh/id_rsa
+      owner: jenkins
+      group: jenkins
+      mode: u=rw,g=,o=
+  - name: install java
+    apt:
+      name: openjdk-8-jdk
+      state: latest
+  - name: jenkins gpg key
+    apt_key:
+      url: "https://pkg.jenkins.io/debian/jenkins.io.key"
+      state: present
+  - name: jenkins apt repo
+    apt_repository:
+      repo: "deb http://pkg.jenkins.io/debian-stable binary/"
+      state: present
+  - name: jenkins install
+    apt:
+      name: jenkins
+      state: latest
+      update_cache: true
+  - name: jenkins service
+    service:
+      name: jenkins
+      state: started
+
+- hosts: swarm
+  become: true
+  tasks:
+  - name: "ssh folder"
+    file:
+      path: /home/jenkins/.ssh
+      state: directory
+      mode: "0700"
+      owner: jenkins
+      group: jenkins
+  - name: Copy private key to ansible-swarm
+    copy:
+      src: /home/qa-admin/ansible/jenkins_id_rsa.pub
+      dest: /home/jenkins/.ssh/authorized_keys
+      owner: jenkins
+      mode: u=rw,g=,o=
+
+- hosts: all
+  become: true
+  tasks:
+  - name: update certificates
+    apt:
+      pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+      state: latest
+      update_cache: true
+  - name: docker gpg key
+    apt_key:
+      url: "https://download.docker.com/linux/debian/gpg"
+      state: present
+  - name: docker apt repository
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable"
+      state: present
+  - name: docker install
+    apt:
+      pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      state: latest
+      update_cache: true
+  - name: docker service
+    service:
+      name: docker
+      state: started
+  - name: Add Jenkins user to the Docker group
+    user:
+      name: jenkins
+      groups:
+      - docker
+      shell: /bin/bash
+  - name: "create etc/docker folder"
+    file:
+      path: /etc/docker
+      state: directory
+      owner: jenkins
+      group: jenkins
+    remote_user: jenkins
+  - name: "Copy daemon for registry connection"
+    copy:
+      src: /home/qa-admin/PracticalProject/daemon.json
+      dest: /etc/docker/daemon.json
+      owner: jenkins
+      group: jenkins
+    remote_user: jenkins
+  - name: docker service
+    service:
+      name: docker
+      state: restarted
+    remote_user: jenkins
+
+- hosts: jenkins
+  become: true
+  tasks:
+  - name: Install pip
+    apt:
+      name: python-pip
+      update_cache: yes
+      state: present
+  - pip:
+      name: docker
+  - name: registry container
+    docker_container:
+      name: registry
+      image: registry:2
+      ports:
+      - "5000:5000"
+      volumes:
+      - registry-volume:/var/lib/registry
+    remote_user: jenkins
+  - name: Install pip
+    apt:
+      name: python-pip
+      update_cache: yes
+      state: present
+  - pip:
+      name: docker
+  - pip:
+      name: docker-compose
+  - pip:
+      name: jsondiff
+  - git:
+      repo: 'https://github.com/Shaybs/PracticalProject.git'
+      dest: /home/jenkins/PracticalProject
+      version: development-test
+
+- hosts: swarm
+  become: true
+  tasks:
+  - name: Install pip
+    apt:
+      name: python-pip
+      update_cache: yes
+      state: present
+  - pip:
+      name: docker
+  - pip:
+      name: docker-compose
+  - pip:
+      name: jsondiff
+  - name: initialise swarm
+    docker_swarm:
+      state: present
+    remote_user: jenkins
+  - git:
+      repo: 'https://github.com/Shaybs/PracticalProject.git'
+      dest: /home/jenkins/PracticalProject
+      version: development-test

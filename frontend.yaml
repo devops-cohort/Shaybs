@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  containers:
+    - name: frontend
+      image: shaybs/frontend:1
+      env:
+      - name: USERNAME
+        value: ${USERNAME}
+      - name: PASSWORD
+        value: ${PASSWORD}
+      - name: MYSQL_URL
+        value: ${MYSQL_URL}
+      - name: MYSQL_DB
+        value: ${MYSQL_DB}
+      - name: MYSQL_DB_TEST
+        value: ${MYSQL_DB_TEST}
+      - name: SECRET_KEY
+        value: ${SECRET_KEY}
+      ports:
+      - containerPort: 5000
+  imagePullSecrets:
+    - name: myregistrykey
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontend
+  ports: 
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: LoadBalancer
+

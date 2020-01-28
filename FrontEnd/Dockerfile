@@ -1,0 +1,6 @@
+FROM python:3.6
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+ENTRYPOINT /usr/local/bin/gunicorn --bind=0.0.0.0:5000 --worker-class eventlet -w 3 application:app
+COPY . .
