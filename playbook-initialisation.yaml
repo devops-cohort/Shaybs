@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: jenkins
   become: true
   tasks:
   - name: Create Jenkins users
@@ -9,24 +9,11 @@
 - hosts: jenkins
   become: true
   tasks:
-  - name: "ssh folder"
-    file:
-      path: /home/jenkins/.ssh
-      state: directory
-      mode: "0700"
-      owner: jenkins
-      group: jenkins
-  - name: "Copy private key to jenkins"
-    copy:
-      src: /home/qa-admin/ansible/jenkins_id_rsa
-      dest: /home/jenkins/.ssh/id_rsa
-      owner: jenkins
-      group: jenkins
-      mode: u=rw,g=,o=
   - name: install java
     apt:
       name: openjdk-8-jdk
       state: latest
+      update_cache: true
   - name: jenkins gpg key
     apt_key:
       url: "https://pkg.jenkins.io/debian/jenkins.io.key"
@@ -45,24 +32,7 @@
       name: jenkins
       state: started
 
-- hosts: swarm
-  become: true
-  tasks:
-  - name: "ssh folder"
-    file:
-      path: /home/jenkins/.ssh
-      state: directory
-      mode: "0700"
-      owner: jenkins
-      group: jenkins
-  - name: Copy private key to ansible-swarm
-    copy:
-      src: /home/qa-admin/ansible/jenkins_id_rsa.pub
-      dest: /home/jenkins/.ssh/authorized_keys
-      owner: jenkins
-      mode: u=rw,g=,o=
-
-- hosts: all
+- hosts: jenkins
   become: true
   tasks:
   - name: update certificates
@@ -126,11 +96,15 @@
   tasks:
   - name: Install pip
     apt:
-      name: python-pip
+      name: python3-pip
       update_cache: yes
       state: present
   - pip:
-      name: docker
+      executable: pip3
+      name:
+      - docker
+      - docker-compose
+      - jsondiff
   - name: registry container
     docker_container:
       name: registry
@@ -139,40 +113,6 @@
       - "5000:5000"
       volumes:
       - registry-volume:/var/lib/registry
-    remote_user: jenkins
-  - name: Install pip
-    apt:
-      name: python-pip
-      update_cache: yes
-      state: present
-  - pip:
-      name: docker
-  - pip:
-      name: docker-compose
-  - pip:
-      name: jsondiff
-  - git:
-      repo: 'https://github.com/Shaybs/PracticalProject.git'
-      dest: /home/jenkins/PracticalProject
-      version: development-test
-
-- hosts: swarm
-  become: true
-  tasks:
-  - name: Install pip
-    apt:
-      name: python-pip
-      update_cache: yes
-      state: present
-  - pip:
-      name: docker
-  - pip:
-      name: docker-compose
-  - pip:
-      name: jsondiff
-  - name: initialise swarm
-    docker_swarm:
-      state: present
     remote_user: jenkins
   - git:
       repo: 'https://github.com/Shaybs/PracticalProject.git'
